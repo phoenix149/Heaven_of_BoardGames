@@ -1,0 +1,8 @@
+les différents jeux
+
+1 
+
+type utilisateurs
+admin
+utilisateur
+non enregistré

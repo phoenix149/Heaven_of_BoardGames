@@ -1,0 +1,42 @@
+page connexion :
+
+2 champs login et un mot de passe
+
+un bouton confirmer
+
+"mot de passe oublié" 
+
+Vous n'avez pas encore de compte insvrivez-vous ici 
+
+-------------------------------------------------------
+
+inscription :
+
+Nom, Prénom, (Pseudonime avec verification optionnel) date de naissance, Adresse 4 champs( nomderue_numéro, complément d'adresse, code postal, Ville), n° de téléphone, adresse email, créer un mot de passe, confirmer mot de passe- confirmer annuler
+
+
+-------------------------------------------------------
+
+Mon compte :
+
+
+-----------------------------------------------------
+
+Page ajout de jeu : formulaire ( Staff du site )(mise à jour)
+
+fonctionne avec api Board Game Geek api 
+
+champ recherche api
+
+Code EAN, champ pour l'adresse de l'image, envoi d'image directement, description du jeu, langue, Thème du jeu 
+
+    
+
+
+
+ 
+
+
+
+
+
