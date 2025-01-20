@@ -15,7 +15,7 @@
 
     <h1>Bienvenue sur Heaven of BoardGames</h1>
     <p>Veuillez vous connectez pour voir les jeux</p>
-    <p>Pas de compte ? <a href="#">S'inscrire</a></p>
+    <p>Pas de compte ? <a href="inscription.php">S'inscrire</a></p>
         <form action="#" method="post">
             <div>
                 <label for="">Identifiant</label>
