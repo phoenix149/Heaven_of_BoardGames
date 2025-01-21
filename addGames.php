@@ -38,7 +38,7 @@ awninh php
             </div>
             <div>
                 <label for="createDate">Date de création</label>
-                <input type="text" name="createDate" require>
+                <input type="date" name="createDate" require>
             </div>
             <div>
                 <label for="country">Pays</label>

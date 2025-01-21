@@ -1,4 +1,7 @@
 <header>
+    <section id="hSectionSessionNav">
+        
+    </section>
         <section id="hSectionTop">
             <aside id="hAsideLogo">
                 <img src="images/logo.png" alt="" id="hLogo">
