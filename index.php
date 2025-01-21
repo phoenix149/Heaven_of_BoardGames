@@ -12,10 +12,50 @@
 <body>
     <?php include './includes/header.php' ?>
     <main>
-        <?php include 'includes/carousel.php' ?>
+        <?php include 'includes/carousel.php';
+        // Configuration de la base de données
+        $host = 'localhost';
+        $dbname = 'fil_rouge';
+        $username = 'root';
+        $password = '';
+
+        try {
+            // Connexion à la base de données
+            $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            die("Erreur de connexion : " . $e->getMessage());
+        }
+
+
+        // Requête SQL pour récupérer les informations des jeux 
+        $sql = "SELECT jeu_nom, 
+        jeu_img, 
+        jeu_prix, 
+        jeu_EAN, 
+        jeu_dte_creation, 
+        jeu_temps, 
+        jeu_qte_stc, 
+        jeu_note,
+        pays_id,
+        ctg_id,
+        age_id,
+        m_id
+        FROM Jeu j
+        INNER JOIN Pays p ON Jeu.pays_id = Pays.pays_id
+        INNER JOIN Mecanisme m ON j.m_id = m.m_id
+        INNER JOIN Categories c ON j.ctg_id = c.ctg_id
+        INNER JOIN Age a ON j.age_id = a.age_id";
+
+        // Exécution de la requête
+        $jeux = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
+        ?>
         <section id="mSectionArticle">
             <article id="mArticleLeft">
                 <div class="card">
+                   <?php if (count($jeux) > 0): ?>
+                    <?php foreach($jeux as $jeu): ?> 
 
                 </div>
             </article>
