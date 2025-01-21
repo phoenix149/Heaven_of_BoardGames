@@ -8,13 +8,20 @@
     <link rel="stylesheet" href="style/style.css">
     <title>Heaven Of BoardGames</title>
 </head>
+
 <body>
     <?php include './includes/header.php' ?>
     <main>
         <?php include 'includes/carousel.php' ?>
         <section id="mSectionArticle">
-            <article id="mArticleLeft"></article>
-            <article id="mArticleRight"></article>
+            <article id="mArticleLeft">
+                <div class="card">
+
+                </div>
+            </article>
+            <article id="mArticleRight">
+
+            </article>
         </section>
     </main>
     <?php include './includes/footer.php' ?>
