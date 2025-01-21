@@ -8,9 +8,17 @@ body {
     background-image: url('../images/un fond dintrécran classe et luxueux pour un site web sur les jeux de sociétés.png');
     background-size: 100%;
 }
+
+/* #hSectionSessionNav {
+    background-color: #FFF;
+    border: #1A0F07 2px solid;
+    height: 40px;
+    width: 100%;
+} */
+
 #hSectionTop {
     display: flex;
-    margin-top: 1%;
+    margin-top: 2%;
     margin-right: 1%;
     margin-left: 1%;
     background-color: #2c1a0c;

@@ -1,4 +1,7 @@
 <header>
+    <section id="hSectionSessionNav">
+        
+    </section>
         <section id="hSectionTop">
             <aside id="hAsideLogo">
                 <img src="images/logo.png" alt="" id="hLogo">
@@ -21,7 +24,7 @@
                 <a href="#"><img src="images/facebook.png" class="hRSLogo" alt="FacebookLogo"></a>
                 <a href="#"><img src="images/youtube.png" class="hRSLogo" alt="YoutubeLogo"></a>
                 <a href="#"><img src="images/tic-tac (1).png" class="hRSLogo" alt="Tik-TokLogo"></a>
-                <a href="#"><img src="/$images/tic.png" class="hRSLogo" alt="TwitchLogo"></a>
+                <a href="#"><img src="images/tic.png" class="hRSLogo" alt="TwitchLogo"></a>
             </aside>
         </section>
         <section id="hSectionNavBar">
