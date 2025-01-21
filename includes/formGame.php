@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 };
 
 
-    <?php
+  
 
 
     if (isset($_POST['gameName']) && !empty($_POST['gameName'])) { // Si le champ gameName est initialisé et n'est pas vide
