@@ -55,7 +55,10 @@
             <article id="mArticleLeft">
                 <div class="card">
                    <?php if (count($jeux) > 0): ?>
-                    <?php foreach($jeux as $jeu): ?> 
+                    <?php foreach($jeux as $jeu): ?>
+                        
+                    <?php endforeach ?> 
+                    <?php endif ?> 
 
                 </div>
             </article>
