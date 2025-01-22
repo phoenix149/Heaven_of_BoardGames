@@ -51,21 +51,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-    $stmt = $pdo->prepare("SELECT * FROM utilisateurs WHERE u_pseudo=:login;");
-    $stmt->bindValue(':login', $login);
+    $stmt = $pdo->prepare("SELECT * FROM utilisateurs WHERE u_pseudo=:u_pseudo;");
+    $stmt->bindValue(':u_pseudo', $login);
 	$stmt->execute();
 	$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-	if ($user && isset($user['tu_id']) && password_verify($password, $user['mdp'])) {
+	if ($user && password_verify($password, $user['u_mdp'])) {
         // Connexion réussie, stockage de l'identifiant de l'utilisateur dans la variable de session
         $_SESSION['user_id'] = $user['u_id'];
     
         //recup le type d'utilisateur pour renseigner la variable de session user_type
-        $stmt = $pdo->prepare("SELECT * FROM type_utilisateur WHERE tu_id=:typeuser");
-        $stmt->bindValue(':typeuser', $user['tu_id']);
+        $stmt = $pdo->prepare("SELECT * FROM type_utilisateur WHERE tu_id=");
+        $stmt->bindValue(':tu_id', $user['tu_id']);
         $stmt->execute();
         $usert = $stmt->fetch(PDO::FETCH_ASSOC);
-        $_SESSION['user_type'] = $usert['Libelle'];
+        $_SESSION['user_type'] = $usert['tu_libelle'];
         $_SESSION['logged_in'] = true;
         header('Location: index.php'); // Redirection vers la page d'accueil
         exit();
