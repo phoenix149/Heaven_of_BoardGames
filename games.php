@@ -42,13 +42,23 @@
         j.jeu_note,
         p.pays_nom AS Pays,
         c.ctg_nom AS Categorie,
-        a.age_nom AS Age,
-        m.m_nom AS Mecanisme
+        ag.age_nom AS Age,
+        m.m_nom AS Mecanisme,
+        tdj_nom AS Theme,
+        a_nom AS Auteur
+        -- l_nom AS Langue
         FROM Jeu j
         INNER JOIN Pays p ON j.pays_id = p.pays_id
         INNER JOIN Mecanisme m ON j.m_id = m.m_id
         INNER JOIN Categories c ON j.ctg_id = c.ctg_id
-        INNER JOIN Age a ON j.age_id = a.age_id";
+        INNER JOIN Age ag ON j.age_id = ag.age_id
+        INNER JOIN jeu_theme jt ON j.jeu_id = jt.jeu_id
+        INNER JOIN theme_de_jeu tdj ON jt.tdj_id = tdj.tdj_id
+        INNER JOIN jeu_auteurs ja ON j.jeu_id = ja.jeu_id
+        INNER JOIN auteurs a ON ja.a_id = a.a_id
+        -- INNER JOIN jeu_langues jl ON j.jeu_id = jl.jeu_id
+        -- INNER JOIN langues l ON jl.l_id = l.l_id
+        ";
 
         // Exécution de la requête
         $jeux = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
@@ -60,23 +70,28 @@
                 <?php if (count($jeux) > 0): ?>
                     <?php foreach ($jeux as $jeu): ?>
                         <section id="gameSelect">
-                            <article id="image" style="height: auto; width: 100%; object-fit: cover;">
-                                <img src="<?= htmlentities($jeu['Photo']) ?>" alt="<?= htmlentities($jeu['Nom']) ?>" class="card-img-top" style="height: auto; width: 60%; object-fit: cover;">
+                            <article id="image" >
+                                <img id="imageGame" src="<?= htmlentities($jeu['Photo']) ?>" alt="<?= htmlentities($jeu['Nom']) ?>" class="card-img-top">
                             </article>
                             <article id="characteristics">
                                 <div>
                                     <h3 class="p-2"><strong><?= htmlentities($jeu['Nom']) ?></strong></h3>
-                                    <p class="card-text"><strong>Prix TTC : </strong><?= number_format($jeu['jeu_prix']) ?>€</p>
                                     <p class="card-text"><strong>EAN : </strong><?= htmlentities($jeu['EAN']) ?></p>
                                     <p class="card-text"><strong>Date de Création : </strong><?= htmlentities($jeu['jeu_dte_creation']) ?></p>
                                     <p class="card-text"><strong>Pays : </strong><?= htmlentities($jeu['Pays']) ?></p>
                                     <p class="card-text"><strong>Catégorie : </strong><?= htmlentities($jeu['Categorie']) ?></p>
                                     <p class="card-text"><strong>Age : </strong><?= htmlentities($jeu['Age']) ?></p>
                                     <p class="card-text"><strong>Mécanisme : </strong><?= htmlentities($jeu['Mecanisme']) ?></p>
+                                    <p class="card-text"><strong>Thème de Jeu : </strong><?= htmlentities($jeu['Theme']) ?></p>
                                 </div>
                                 <div>
                                     <h5>Description de l'article </h5>
                                 </div>
+                            </article>
+                            <article id="basket">
+                            <p class="card-text"><strong>Prix TTC : </strong><?= number_format($jeu['jeu_prix']) ?>€</p>
+                            <p class="card-text"><strong>Auteur(s) : </strong><?= htmlentities($jeu['Auteur']) ?></p>
+                            <button type="submit" name=""> <span>Ajouter au panier </span></button>
                             </article>
                         </section>
                     <?php endforeach ?>
