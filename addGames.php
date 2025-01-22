@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -12,52 +12,136 @@
 
 <body>
     <?php include './includes/header.php' ?>
-awninh php
     <main>
+        <?php
+
+        // Récupère les Catégories, Auteurs, Méchanisme, Age, Pays, Langue du jeu
+        $categoriesReq = $pdo->query("SELECT ctg_id, ctg_nom from categories")->fetchAll();
+        $authors = $pdo->query("SELECT a_id, a_nom from auteurs")->fetchAll();
+        $mechanismReq = $pdo->query("SELECT m_id, m_nom from mecanisme")->fetchAll();
+        $ageMiddle = $pdo->query("SELECT age_id, age_nom from age")->fetchAll();
+        $countryReq = $pdo->query("SELECT pays_id, pays_nom from pays")->fetchAll();
+        $languageGames = $pdo->query("SELECT l_id, l_nom from langues")->fetchAll();
+
+        ?>
         <h2>Veuillez renseigner les informations concernant le jeu.</h2>
-        <form id="form1" action="includes/formGame.php" method="post" enctype="multipart/form-data">
+        <form id="form1" action="./formGame.php" method="post" enctype="multipart/form-data">
             <div>
-                <label for="gameName">Nom du Jeu</label>
-                <input type="text" name="gameName" require>
+                <label for="ean">EAN :</label>
+                <input type="text" name="ean" required>
             </div>
+            <br>
             <div>
-                <label for="gamePrice">Prix du Jeu</label>
-                <input type="text" name="gamePrice" require>
+                <label for="gameName">Nom du Jeu :</label>
+                <input type="text" name="gameName" required>
             </div>
+            <br>
             <div>
-                <label for="ean">EAN</label>
-                <input type="text" name="ean" require>
+                <label for="noteGame">Note du Jeu :</label>
+                <input type="text" name="noteGame" id="">
             </div>
+            <br>
             <div>
-                <label for="gameTime">Temps de Jeu</label>
-                <input type="number" name="gameTime" require>
+                <label for="gameTheme">Thème du Jeu :</label>
+                <input type="text" name="gameTheme">
             </div>
+            <br>
             <div>
-                <label for="middleAge">Age moyen</label>
-                <input type="number" name="middleAge" require>
+                <label for="descGame">Description :</label>
+                <textarea name="descGame" id=""></textarea>
             </div>
+            <br>
             <div>
-                <label for="createDate">Date de création</label>
-                <input type="date" name="createDate" require>
+                <label for="gamePrice">Prix du Jeu :</label>
+                <input type="text" name="gamePrice" required>
             </div>
+            <br>
             <div>
-                <label for="country">Pays</label>
-                <input type="text" name="country" require>
+                <label for="gameTime">Temps de Jeu :</label>
+                <input type="text" name="" id="">
             </div>
+            <br>
             <div>
-                <label for="category">Catégorie</label>
-                <input type="text" name="category" require>
+                <label for="middleAge">Age moyen :</label>
+                <select name="middleAge" id="">
+                <?php foreach ($ageMiddle as $ageMiddleU): ?>
+                        <option value="<?= $ageMiddleU['age_id'] ?>">
+                            <?= $ageMiddleU['age_id']. "-".htmlentities($ageMiddleU['age_nom']) ?>
+                            </option>
+                        <?php endforeach; ?>
+                </select>
             </div>
+            <br>
+            <!-- <div>
+                <label for="nbJoueur">Nombre de Joueurs :</label>
+                <select class="" name="nbJoueur" id=""></select>
+            </div> -->
             <div>
-                <label for="mechanism">Mécanisme de Jeu</label>
-                <input type="text" name="mechanism" require>
+                <label for="createDate">Date de création :</label>
+                <input type="date" name="createDate" required>
             </div>
+            <br>
             <div>
-                <label for="file">Charger une image</label>
+                <label for="country">Pays :</label>
+                <select name="country" id="">
+                <?php foreach ($countryReq as $countryU): ?>
+                        <option value="<?= $countryU['pays_id'] ?>">
+                            <?= $countryU['pays_id']. "-". htmlentities($countryU['pays_nom']) ?>
+                            </option>
+                        <?php endforeach; ?>
+                </select>
+            </div>
+            <br>
+            <div>
+            <label for="languagesGame">Langue du Jeu :</label>
+                <select name="languagesGame" id="">
+                <?php foreach ($languageGames as $languageGame): ?>
+                        <option value="<?= $languageGame['l_id'] ?>">
+                            <?= $languageGame['l_id']. "-".htmlentities($languageGame['l_nom']) ?>
+                            </option>
+                        <?php endforeach; ?>
+                </select>
+            </div>
+            <br>
+            <div>
+                <label for="category">Catégorie :</label>
+                <select name="category" id="">
+                    <?php foreach ($categoriesReq as $categorie): ?>
+                        <option value="<?= $categorie['ctg_id'] ?>">
+                            <?= $categorie['ctg_id']. "-".htmlentities($categorie['ctg_nom']) ?>
+                            </option>
+                        <?php endforeach; ?>
+                </select>
+            </div>
+            <br>
+            <div>
+                <label for="mechanism">Mécanisme de Jeu :</label>
+                <select name="mechanism" id="">
+                <?php foreach ($mechanismReq as $mechanismU): ?>
+                        <option value="<?= $mechanismU['m_id'] ?>">
+                            <?= $mechanismU['m_id']. "-".htmlentities($mechanismU['m_nom']) ?>
+                            </option>
+                        <?php endforeach; ?>
+                </select>
+            </div>
+            <br>
+            <div>
+                <label for="stockGame">Quantité en stock :</label>
+                <input type="text" name="stockGame">
+            </div>
+            <br>
+            <div>
+                <label for="file">Charger une image :</label>
                 <input type="file" id="file" name="file">
+            </div>
+            <br>
+            <div>
+                <label for="fileLink">Insérer un lien pour l'image :</label>
+                <input type="text" name="fileLink">
             </div>
             <div>
                 <input type="submit" value="Enregistrer">
+                <input type="reset" value="Annuler">
             </div>
         </form>
     </main>

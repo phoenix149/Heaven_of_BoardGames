@@ -1,18 +1,6 @@
+<?php include './includes/header.php' ?>
 <?php
-
-// Configuration de la base de données
-$host = 'localhost';
-$dbname = 'fil_rouge';
-$username = 'root';
-$password = '';
-
-try {
-    // Connexion à la base de données
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Erreur de connexion : " . $e->getMessage());
-}
+echo "<main>";
 // $conn 
 // echo $pdo;
 
@@ -54,49 +42,51 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $sql4 = "INSERT into Age (age_nom) values ('$middleAge')";
         $pdo->exec($sql4);
     };
-};
 
 
-    <?php
 
 
-    if (isset($_POST['gameName']) && !empty($_POST['gameName'])) { // Si le champ gameName est initialisé et n'est pas vide
+    if (isset($_POST['gameName']) && !empty($_POST['gameName'])) {
         $gameName = str_replace(" ", "_", $_POST['gameName']); // Je remplace les espaces par des _
-        // $requete = new PDO()
-        $sql5 = "INSERT into Jeu (jeu_nom) values ('$gameName')"; // Insert la valeur contenue dans $gameName dans le champ jeu_nom de la table jeu
+        $statement = $pdo->prepare("INSERT INTO jeu(jeu_nom) VALUES (:gameName)"); // Utilisation de paramètres préparés
+        $statement->bindParam(':gameName', $gameName);
+        $statement->execute(); // Exécution de la requête préparée
     }
+    
 
     if (isset($_POST['gamePrice']) && !empty($_POST['gamePrice'])) { // Si le champ gamePrice est initialisé et n'est pas vide
-        $gamePrice = trim($_POST['gamePrice']); // Je supprime les espaces
-        $sql6 = "INSERT into Jeu (jeu_prix) values ('$gamePrice')"; // Insert la valeur contenue dans $gamePrice dans le champ jeu_prix de la table jeu
-    }
+        $gamePrice = trim($_POST['gamePrice']) . "€"; // Je supprime les espaces et je rajoute le symbole euro
+        $gameName = str_replace(",", ".", $_POST['gamePrice']);
+        $sql6 = "INSERT into `jeu` (`jeu_prix`) values ('$gamePrice')"; // Insert la valeur contenue dans $gamePrice dans le champ jeu_prix de la table jeu
+        $result6 = $pdo->query($sql6);
+        $pdo->exec($sql6);
+    };
 
     if (isset($_POST['ean']) && !empty($_POST['ean'])) { // Si le champ ean est initialisé et n'est pas vide
         $ean = trim($_POST['ean']); // Je supprime les espaces
         $sql7 = "INSERT into Jeu (jeu_EAN) values ('$ean')"; // Insert la valeur contenue dans $ean dans le champ jeu_EAN de la table jeu
-    }
+        $result7 = $pdo->query($sql7);
+        $pdo->exec($sql7);
+    };
 
     if (isset($_POST['gameTime']) && !empty($_POST['gameTime'])) { // Si le champ gameTime est initialisé et n'est pas vide
         $gameTime = trim($_POST['gameTime']); // Je supprime les espaces
         $sql8 = "INSERT into Jeu (jeu_temps) values ('$gameTime')"; // Insert la valeur contenue dans $gameTime dans le champ jeu_temps de la table jeu
-    }
+        $result8 = $pdo->query($sql8);
+        $pdo->exec($sql8);
+    };
 
 
     if (isset($_POST['createDate']) && !empty($_POST['createDate'])) { // Si le champ createDate est inistialisé et n'est pas vide
         $createDate = str_replace("/", "-", $_POST['createDate']); // Je remplace les "/" par des "-"
         $sql9 = "INSERT into Jeu (jeu_dte_creation) values ('$createDate')"; // Insert la valeur contenue dans $createDate dans le champ jeu_dte_creation de la table jeu
+        $result9 = $pdo->query($sql9);
+        $pdo->exec($sql9);
     }
-
-
-
-
-
-    ?>
-
-
-
-
-
-
+}
+?>
+</main>
+ 
+<?php include './includes/footer.php' ?>
 
 
