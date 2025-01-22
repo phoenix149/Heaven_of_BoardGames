@@ -324,3 +324,17 @@ header {
 #buttonTop:hover {
     color: #FFF;
 }
+
+/*Affichage des jeux*/
+
+#gameSelect {
+    display: flex;
+    align-items: flex-start;
+    background-color: #FFF;
+    padding: 20px;
+}
+
+#image {
+    display: flex;
+    justify-content: center;
+}

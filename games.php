@@ -12,7 +12,9 @@
 <body>
     <?php include './includes/header.php' ?>
     <main>
-        <?php include 'includes/carousel.php';
+
+
+        <?php
         // Configuration de la base de données
         $host = 'localhost';
         $dbname = 'fil_rouge';
@@ -52,34 +54,42 @@
         $jeux = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
         ?>
-        <section id="mSectionArticle">
-            <article id="mArticleLeft">
-                <div class="row">
-                    <?php if (count($jeux) > 0): ?>
-                        <?php foreach ($jeux as $jeu): ?>
-                            <div class="col-md4 mb-4">
-                                <a href="games.php?jeu_id<?= urlencode($jeu['jeu_id']) ?>" class="text-decoration-none">
-                                    <div class="card">
-                                        <img src="<?= htmlentities($jeu['Photo']) ?>" alt="<?= htmlentities($jeu['Nom']) ?>" class="card-img-top" style="height: auto; width: 30%; object-fit: cover;">
-                                        <div class="card-body">
-                                            <h5 class="card-title"><?= htmlentities($jeu['Nom']) ?></h5>
-                                            <p class="card-text"><strong>Prix TTC : </strong><?= number_format($jeu['jeu_prix']) ?>€</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        <?php endforeach ?>
-                    <?php endif ?>
 
-                </div>
-            </article>
-            <article id="mArticleRight">
+        <article id="mArticleLeft">
+            <div class="row">
+                <?php if (count($jeux) > 0): ?>
+                    <?php foreach ($jeux as $jeu): ?>
+                        <section id="gameSelect">
+                            <article id="image" style="height: auto; width: 100%; object-fit: cover;">
+                                <img src="<?= htmlentities($jeu['Photo']) ?>" alt="<?= htmlentities($jeu['Nom']) ?>" class="card-img-top" style="height: auto; width: 60%; object-fit: cover;">
+                            </article>
+                            <article id="characteristics">
+                                <div>
+                                    <h3 class="p-2"><strong><?= htmlentities($jeu['Nom']) ?></strong></h3>
+                                    <p class="card-text"><strong>Prix TTC : </strong><?= number_format($jeu['jeu_prix']) ?>€</p>
+                                    <p class="card-text"><strong>EAN : </strong><?= htmlentities($jeu['EAN']) ?></p>
+                                    <p class="card-text"><strong>Date de Création : </strong><?= htmlentities($jeu['jeu_dte_creation']) ?></p>
+                                    <p class="card-text"><strong>Pays : </strong><?= htmlentities($jeu['Pays']) ?></p>
+                                    <p class="card-text"><strong>Catégorie : </strong><?= htmlentities($jeu['Categorie']) ?></p>
+                                    <p class="card-text"><strong>Age : </strong><?= htmlentities($jeu['Age']) ?></p>
+                                    <p class="card-text"><strong>Mécanisme : </strong><?= htmlentities($jeu['Mecanisme']) ?></p>
+                                </div>
+                                <div>
+                                    <h5>Description de l'article </h5>
+                                </div>
+                            </article>
+                        </section>
+                    <?php endforeach ?>
+                <?php endif ?>
 
-            </article>
-        </section>
+            </div>
+        </article>
+
+
     </main>
     <?php include './includes/footer.php' ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 </body>
 
 </html>
