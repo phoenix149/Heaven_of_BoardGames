@@ -76,13 +76,13 @@
                             <article id="characteristics">
                                 <div>
                                     <h3 class="p-2"><strong><?= htmlentities($jeu['Nom']) ?></strong></h3>
-                                    <p class="card-text"><strong>EAN : </strong><?= htmlentities($jeu['EAN']) ?></p>
-                                    <p class="card-text"><strong>Date de Création : </strong><?= htmlentities($jeu['jeu_dte_creation']) ?></p>
-                                    <p class="card-text"><strong>Pays : </strong><?= htmlentities($jeu['Pays']) ?></p>
                                     <p class="card-text"><strong>Catégorie : </strong><?= htmlentities($jeu['Categorie']) ?></p>
-                                    <p class="card-text"><strong>Age : </strong><?= htmlentities($jeu['Age']) ?></p>
                                     <p class="card-text"><strong>Mécanisme : </strong><?= htmlentities($jeu['Mecanisme']) ?></p>
                                     <p class="card-text"><strong>Thème de Jeu : </strong><?= htmlentities($jeu['Theme']) ?></p>
+                                    <p class="card-text"><strong>Date de Création : </strong><?= htmlentities($jeu['jeu_dte_creation']) ?></p>
+                                    <p class="card-text"><strong>Pays : </strong><?= htmlentities($jeu['Pays']) ?></p>
+                                    <p class="card-text"><strong>Age : </strong><?= htmlentities($jeu['Age']) ?></p>
+                                    <p class="card-text"><strong>EAN : </strong><?= htmlentities($jeu['EAN']) ?></p>
                                 </div>
                                 <div>
                                     <h5>Description de l'article </h5>

@@ -64,10 +64,11 @@ main {
   border: #2c1a0c 2px solid;
   background-color: #fff;
   border-radius: 10px;
-  margin-right: 1%;
-  margin-left: 1%;
-  width: 98%;
-  height: 950px;
+  margin-right: 15%;
+  margin-left: 15%;
+  margin-top: 1%;
+  /* width: 98%;
+  height: 950px; */
 }
 
 #hArticleSearchbar {
@@ -342,5 +343,7 @@ header {
 
 #classLeft {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
