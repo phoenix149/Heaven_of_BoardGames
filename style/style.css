@@ -68,7 +68,8 @@ main {
     margin-right: 1%;
     margin-left: 1%;
     width: 98%;
-    height: 950px;
+    max-height: 100%;
+    min-height: 950px;
 }
 
 #hArticleSearchbar {
@@ -199,7 +200,7 @@ header {
     margin-left: 5%;
     margin-right: 5%;
     width: 90%;
-    height: 18%;
+    height: 150px;
     overflow: hidden;
 }
 
@@ -323,4 +324,12 @@ header {
 
 #buttonTop:hover {
     color: #FFF;
+}
+
+#mSForms {
+    font-weight: bold;
+    color:#2c1a0c;
+    font-size:larger;
+    display: flex;
+    justify-content:center;
 }

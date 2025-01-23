@@ -1,92 +1,158 @@
 <?php include './includes/header.php' ?>
 <?php
 echo "<main>";
-// $conn 
-// echo $pdo;
-
-//Récupération des valeurs saisises
-$country = isset($_POST["country"]) && !empty($_POST["country"]) ? $_POST["country"] : "";
-$mechanism = isset($_POST["mechanism"]) && !empty($_POST["mechanism"]) ? $_POST["mechanism"] : "";
-$category = isset($_POST["category"]) && !empty($_POST["category"]) ? $_POST["category"] : "";
-$middleAge = isset($_POST["middleAge"]) && !empty($_POST["middleAge"]) ? $_POST["middleAge"] : "";
-
-//Récupération des Ids
-$req1 = "SELECT pays_nom from Pays JOIN Jeu ON Jeu.pays_id = Pays.pays_id";
-$req2 = "SELECT m_nom FROM Mecanisme JOIN Jeu ON Jeu.m_id = Mecanisme.m_id";
-$req3 = "SELECT ctg_nom FROM Categories JOIN Jeu ON Jeu.ctg_id = Categories.ctg_id";
-$req4 = "SELECT age_nom FROM Age JOIN Jeu ON Jeu.age_id = Age.age_id";
-
-// Exécution des requêtes 
-$result1 = $pdo->query($req1);
-$result2 = $pdo->query($req2);
-$result3 = $pdo->query($req3);
-$result4 = $pdo->query($req4);
-
-//Traitements des données insérées
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-    if ($result1->rowCount() == 0) {
-        $sql1 = "INSERT into Pays (pays_nom) values ('$country')";
-        $pdo->exec($sql1);
-    };
-    if ($result2->rowCount() == 0) {
-        $sql2 = "INSERT into Mecanisme (m_nom) values ('$mechanism')";
-        $pdo->exec($sql2);
-    };
-    if ($result3->rowCount() == 0) {
-        $sql3 = "INSERT into  Categories (ctg_nom) values ('$category')";
-        $pdo->exec($sql3);
-    };
-    if ($result4->rowcount() == 0) {
-        $sql4 = "INSERT into Age (age_nom) values ('$middleAge')";
-        $pdo->exec($sql4);
-    };
 
 
+// // Gestion de l'upload de fichier
+// if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
+//     $uploads_dir = 'images/';
+//     $tmp_name = $_FILES['file']['tmp_name'];
+//     $filename = uniqid() . '_' . basename($_FILES['file']['name']);
+//     $photo_path = $uploads_dir . $filename;
 
+//     if (move_uploaded_file($tmp_name, $photo_path)) {
+//         $photo = $filename;
+//     } else {
+//         $message = "Erreur lors de l'upload de la photo.";
+//     }
+// }
+$modifBDDAuthors = false;
+$modifBDDEditors = false;
 
-    if (isset($_POST['gameName']) && !empty($_POST['gameName'])) {
-        $gameName = str_replace(" ", "_", $_POST['gameName']); // Je remplace les espaces par des _
-        $statement = $pdo->prepare("INSERT INTO jeu(jeu_nom) VALUES (:gameName)"); // Utilisation de paramètres préparés
-        $statement->bindParam(':gameName', $gameName);
-        $statement->execute(); // Exécution de la requête préparée
-    }
-    
+if (isset($_POST['addAuthor']) && !empty($_POST['addAuthor'])) {
 
-    if (isset($_POST['gamePrice']) && !empty($_POST['gamePrice'])) { // Si le champ gamePrice est initialisé et n'est pas vide
-        $gamePrice = trim($_POST['gamePrice']) . "€"; // Je supprime les espaces et je rajoute le symbole euro
-        $gameName = str_replace(",", ".", $_POST['gamePrice']);
-        $sql6 = "INSERT into `jeu` (`jeu_prix`) values ('$gamePrice')"; // Insert la valeur contenue dans $gamePrice dans le champ jeu_prix de la table jeu
-        $result6 = $pdo->query($sql6);
-        $pdo->exec($sql6);
-    };
+    $addAuthor = $_POST['addAuthor'];
 
-    if (isset($_POST['ean']) && !empty($_POST['ean'])) { // Si le champ ean est initialisé et n'est pas vide
-        $ean = trim($_POST['ean']); // Je supprime les espaces
-        $sql7 = "INSERT into Jeu (jeu_EAN) values ('$ean')"; // Insert la valeur contenue dans $ean dans le champ jeu_EAN de la table jeu
-        $result7 = $pdo->query($sql7);
-        $pdo->exec($sql7);
-    };
+    // J'écris ma requête SQL
+    $sql = "INSERT INTO `auteurs` (`a_nom`) values (:a_nom)";
 
-    if (isset($_POST['gameTime']) && !empty($_POST['gameTime'])) { // Si le champ gameTime est initialisé et n'est pas vide
-        $gameTime = trim($_POST['gameTime']); // Je supprime les espaces
-        $sql8 = "INSERT into Jeu (jeu_temps) values ('$gameTime')"; // Insert la valeur contenue dans $gameTime dans le champ jeu_temps de la table jeu
-        $result8 = $pdo->query($sql8);
-        $pdo->exec($sql8);
-    };
+    // Je prépare ma requête
+    $request = $pdo->prepare($sql);
 
+    // J'injecte mes valeurs
+    $request->bindValue(":a_nom", $addAuthor, PDO::PARAM_STR);
 
-    if (isset($_POST['createDate']) && !empty($_POST['createDate'])) { // Si le champ createDate est inistialisé et n'est pas vide
-        $createDate = str_replace("/", "-", $_POST['createDate']); // Je remplace les "/" par des "-"
-        $sql9 = "INSERT into Jeu (jeu_dte_creation) values ('$createDate')"; // Insert la valeur contenue dans $createDate dans le champ jeu_dte_creation de la table jeu
-        $result9 = $pdo->query($sql9);
-        $pdo->exec($sql9);
-    }
+    // J'éxécute ma requête
+    $request->execute();
+
+    $modifBDDAuthors = true;
+    $idNewAuthor = $pdo->lastInsertId();
 }
+
+if (isset($_POST['addEditor']) && !empty($_POST['addEditor'])) {
+
+    $addEditor = $_POST['addEditor'];
+
+    // J'écris ma requête SQL
+    $sql = "INSERT INTO `editeur` (`edit_nom`) values (:edit_nom)";
+
+    // Je prépare ma requête
+    $request = $pdo->prepare($sql);
+
+    // J'injecte mes valeurs
+    $request->bindValue(":edit_nom", $addEditor, PDO::PARAM_STR);
+
+    // J'éxécute ma requête
+    $request->execute();
+
+    $modifBDDEditors = true;
+    $idNewEditor = $pdo->lastInsertId();
+}
+
+if (isset($_POST['ean'])) {
+    $gamePrice = trim($_POST['gamePrice']); // Je supprime les espaces et je rajoute le symbole euro
+    $gamePrice = str_replace(",", ".", $_POST['gamePrice']); // Je remplace les "," par un "."
+    $ean = trim($_POST['ean']); // Je supprime les espaces
+    $gameTime = ($_POST['gameTime']); // Je supprime les espaces
+    $createDate = str_replace("/", "-", $_POST['createDate']); // Je remplace les "/" par des "-"
+    $noteGame = trim($_POST['noteGame']); // Je supprime les espaces
+    $fileLink = trim($_POST['fileLink']); // Je supprime les espaces
+
+    // Je récupère mes valeurs 
+    $gameName = $_POST['gameName'];
+    $descGame = $_POST['descGame'];
+    $middleAge = $_POST['middleAge'];
+    $gameTheme = $_POST['gameTheme'];
+    $nbPlayer = $_POST['nbPlayer'] . " Joueurs";
+    $author_ID = $_POST['author'];
+    $editor_ID = $_POST['editor'];
+    $country_ID = $_POST['country'];
+    $languagesGame_ID = $_POST['languagesGame'];
+    $category_ID = $_POST['category'];
+    $mechanism_ID = $_POST['mechanism'];
+    $stockGame = $_POST['stockGame'];
+
+    if ($modifBDDEditors == true) {
+        $editor_ID = $idNewEditor;
+    }
+
+    if ($modifBDDAuthors == true) {
+        $author_ID = $idNewAuthor;
+    }
+
+    // // J'écris ma requête SQL
+    $sql = "INSERT INTO `jeu` ( `jeu_nom`, `jeu_prix`, `jeu_EAN`, `jeu_dte_creation`, `jeu_nb_joueurs`, `jeu_description`, `jeu_temps`, `jeu_qte_stc`, `jeu_note`, `edit_id`, `pays_id`, `ctg_id`, `age_id`, `m_id`) VALUES (:jeu_nom, :jeu_prix, :jeu_EAN, :jeu_dte_creation, :jeu_nb_joueurs, :jeu_description, :jeu_temps, :jeu_qte_stc, :jeu_note, :edit_id, :pays_id, :ctg_id, :age_id, :m_id)";
+
+    // Je prépare ma requête
+    $request = $pdo->prepare($sql);
+
+    // J'injecte mes valeurs 
+    $request->bindValue(":jeu_nom", $gameName, PDO::PARAM_STR);
+    $request->bindValue(":jeu_EAN", $ean, PDO::PARAM_INT);
+    $request->bindValue(":jeu_prix", $gamePrice);
+    $request->bindValue(":jeu_dte_creation", $createDate);
+    $request->bindValue(":jeu_nb_joueurs", $nbPlayer, PDO::PARAM_STR);
+    $request->bindValue(":jeu_description", $descGame, PDO::PARAM_STR);
+    $request->bindValue(":jeu_temps", $gameTime, PDO::PARAM_STR);
+    $request->bindValue(":jeu_qte_stc", $stockGame, PDO::PARAM_INT);
+    $request->bindValue(":jeu_note", $noteGame);
+    $request->bindValue(":edit_id", $editor_ID, PDO::PARAM_INT);
+    $request->bindValue(":pays_id", $country_ID, PDO::PARAM_INT);
+    $request->bindValue(":ctg_id", $category_ID, PDO::PARAM_INT);
+    $request->bindValue(":age_id", $middleAge, PDO::PARAM_INT);
+    $request->bindValue(":m_id", $mechanism_ID, PDO::PARAM_INT);
+
+    // J'éxécute ma requête
+    $request->execute();
+
+    $id_NewGame = $pdo->lastInsertId();
+
+    // J'écris mes trois nouvelle requêtes pour les tables en relation avec ma table jeu
+    $sql = "INSERT INTO `jeu_theme` (`jeu_id`, `tdj_id`) VALUES (:jeu_id, :tdj_id)";
+    $sql2 = "INSERT INTO `jeu_langues` (`jeu_id`, `l_id`) VALUES (:jeu_id, :l_id)";
+    $sql3 = "INSERT INTO `jeu_auteurs` (`jeu_id`, `a_id`) VALUES (:jeu_id, :a_id)";
+
+    // Je prépare mes requêtes
+    $request = $pdo->prepare($sql);
+    $request2 = $pdo->prepare($sql2);
+    $request3 = $pdo->prepare($sql3);
+
+    // J'injecte mes valeurs 
+    $request->bindValue(":jeu_id", $id_NewGame, PDO::PARAM_INT);
+    $request->bindValue(":tdj_id", $gameTheme, PDO::PARAM_INT);
+
+    $request2->bindValue(":jeu_id", $id_NewGame, PDO::PARAM_INT);
+    $request2->bindValue(":l_id", $languagesGame_ID, PDO::PARAM_INT);
+
+    $request3->bindValue(":jeu_id", $id_NewGame, PDO::PARAM_INT);
+    $request3->bindValue(":a_id", $author_ID, PDO::PARAM_INT);
+
+    // J'éxécute ma requête
+    $request->execute();
+
+    $request2->execute();
+
+    $request3->execute();
+
+    header ('location:./index.php');
+}
+// $middleAge = $_POST['middleAge'];
+// echo "Est-ce qu'on voit ce texte ?";
+// echo "<p>$middleAge</p>";
+
+
+
 ?>
 </main>
- 
+
 <?php include './includes/footer.php' ?>
-
-
