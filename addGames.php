@@ -178,8 +178,6 @@
             <div>
                 <label for="file">Charger une image :</label>
                 <input type="file" id="file" name="file">
-                <label for="fileLink">Insérer un lien pour l'image :</label>
-                <input type="text" name="fileLink" ht>
             </div>
             <br>
             <div>

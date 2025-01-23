@@ -3,19 +3,19 @@
 echo "<main>";
 
 
-// // Gestion de l'upload de fichier
-// if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
-//     $uploads_dir = 'images/';
-//     $tmp_name = $_FILES['file']['tmp_name'];
-//     $filename = uniqid() . '_' . basename($_FILES['file']['name']);
-//     $photo_path = $uploads_dir . $filename;
+// Gestion de l'upload de fichier
+if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
+    $uploads_dir = 'images/';
+    $tmp_name = $_FILES['file']['tmp_name'];
+    $filename = uniqid() . '_' . basename($_FILES['file']['name']);
+    $file_path = $uploads_dir . $filename;
 
-//     if (move_uploaded_file($tmp_name, $photo_path)) {
-//         $photo = $filename;
-//     } else {
-//         $message = "Erreur lors de l'upload de la photo.";
-//     }
-// }
+    if (move_uploaded_file($tmp_name, $file_path)) {
+        $photo = $filename;
+    } else {
+        $message = "Erreur lors de l'upload de la photo.";
+    }
+}
 $modifBDDAuthors = false;
 $modifBDDEditors = false;
 
@@ -91,13 +91,14 @@ if (isset($_POST['ean'])) {
     }
 
     // // J'écris ma requête SQL
-    $sql = "INSERT INTO `jeu` ( `jeu_nom`, `jeu_prix`, `jeu_EAN`, `jeu_dte_creation`, `jeu_nb_joueurs`, `jeu_description`, `jeu_temps`, `jeu_qte_stc`, `jeu_note`, `edit_id`, `pays_id`, `ctg_id`, `age_id`, `m_id`) VALUES (:jeu_nom, :jeu_prix, :jeu_EAN, :jeu_dte_creation, :jeu_nb_joueurs, :jeu_description, :jeu_temps, :jeu_qte_stc, :jeu_note, :edit_id, :pays_id, :ctg_id, :age_id, :m_id)";
+    $sql = "INSERT INTO `jeu` ( `jeu_nom`, `jeu_img`, `jeu_prix`, `jeu_EAN`, `jeu_dte_creation`, `jeu_nb_joueurs`, `jeu_description`, `jeu_temps`, `jeu_qte_stc`, `jeu_note`, `edit_id`, `pays_id`, `ctg_id`, `age_id`, `m_id`) VALUES (:jeu_nom, :jeu_img, :jeu_prix, :jeu_EAN, :jeu_dte_creation, :jeu_nb_joueurs, :jeu_description, :jeu_temps, :jeu_qte_stc, :jeu_note, :edit_id, :pays_id, :ctg_id, :age_id, :m_id)";
 
     // Je prépare ma requête
     $request = $pdo->prepare($sql);
 
     // J'injecte mes valeurs 
     $request->bindValue(":jeu_nom", $gameName, PDO::PARAM_STR);
+    $request->bindValue(":jeu_img", $file_path);
     $request->bindValue(":jeu_EAN", $ean, PDO::PARAM_INT);
     $request->bindValue(":jeu_prix", $gamePrice);
     $request->bindValue(":jeu_dte_creation", $createDate);
