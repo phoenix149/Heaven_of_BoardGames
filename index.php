@@ -54,7 +54,7 @@
         ?>
         <section id="mSectionArticle">
             <article id="mArticleLeft">
-                <div class="row">
+                <div class="row" id="classLeft">
                     <?php if (count($jeux) > 0): ?>
                         <?php foreach ($jeux as $jeu): ?>
                             <div class="col-md4 mb-4">

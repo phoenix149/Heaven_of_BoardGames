@@ -339,3 +339,8 @@ header {
   max-height: 50%;
   object-fit: cover;
 }
+
+#classLeft {
+  display: flex;
+  flex-direction: row;
+}

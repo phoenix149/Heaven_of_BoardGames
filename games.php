@@ -56,8 +56,8 @@
         INNER JOIN theme_de_jeu tdj ON jt.tdj_id = tdj.tdj_id
         INNER JOIN jeu_auteurs ja ON j.jeu_id = ja.jeu_id
         INNER JOIN auteurs a ON ja.a_id = a.a_id
-        -- INNER JOIN jeu_langues jl ON j.jeu_id = jl.jeu_id
-        -- INNER JOIN langues l ON jl.l_id = l.l_id
+        INNER JOIN jeu_langues jl ON j.jeu_id = jl.jeu_id
+        INNER JOIN langues l ON jl.l_id = l.l_id
         ";
 
         // Exécution de la requête
