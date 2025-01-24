@@ -15,26 +15,13 @@
 
 
         <?php
-        // Configuration de la base de données
-        $host = 'localhost';
-        $dbname = 'fil_rouge';
-        $username = 'root';
-        $password = '';
-
-        try {
-            // Connexion à la base de données
-            $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            die("Erreur de connexion : " . $e->getMessage());
-        }
-
 
         // Requête SQL pour récupérer les informations des jeux 
         $sql = "SELECT j.jeu_id,
         j.jeu_nom AS Nom, 
         j.jeu_img AS Photo, 
-        j.jeu_prix, 
+        j.jeu_prix,
+        jeu_description AS Description, 
         j.jeu_EAN AS EAN, 
         j.jeu_dte_creation, 
         j.jeu_temps, 
@@ -44,58 +31,71 @@
         c.ctg_nom AS Categorie,
         ag.age_nom AS Age,
         m.m_nom AS Mecanisme,
-        tdj_nom AS Theme,
-        a_nom AS Auteur
-        -- l_nom AS Langue
+        -- tdj_nom AS Theme,
+        a_nom AS Auteur,
+        l_nom AS Langue
         FROM Jeu j
         INNER JOIN Pays p ON j.pays_id = p.pays_id
         INNER JOIN Mecanisme m ON j.m_id = m.m_id
         INNER JOIN Categories c ON j.ctg_id = c.ctg_id
         INNER JOIN Age ag ON j.age_id = ag.age_id
-        INNER JOIN jeu_theme jt ON j.jeu_id = jt.jeu_id
-        INNER JOIN theme_de_jeu tdj ON jt.tdj_id = tdj.tdj_id
+        -- INNER JOIN jeu_theme jt ON j.jeu_id = jt.jeu_id
+        -- INNER JOIN theme_de_jeu tdj ON jt.tdj_id = tdj.tdj_id
         INNER JOIN jeu_auteurs ja ON j.jeu_id = ja.jeu_id
         INNER JOIN auteurs a ON ja.a_id = a.a_id
         INNER JOIN jeu_langues jl ON j.jeu_id = jl.jeu_id
         INNER JOIN langues l ON jl.l_id = l.l_id
-        ";
+        WHERE j.jeu_id LIKE 2";
+
+
+        //Requêtes pour récupérer tous les thèmes 
+        $themes = $pdo->query("SELECT  tdj_nom FROM jeu_theme jt 
+        INNER JOIN theme_de_jeu tj  ON jt.tdj_id = tj.tdj_id
+        WHERE jeu_id LIKE 2")->fetchAll(PDO::FETCH_ASSOC);
 
         // Exécution de la requête
         $jeux = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
+        // On fait une boucle pour afficher tous les thèmes d'un jeu
+        $tm = "";
+        foreach ($themes as $theme) {
+            foreach ($theme as $th) {
+                $tm .= $th . " ";
+            }
+        };
         ?>
 
         <article id="mArticleLeft">
             <div class="row">
-                <?php if (count($jeux) > 0): ?>
-                    <?php foreach ($jeux as $jeu): ?>
-                        <section id="gameSelect">
-                            <article id="image" >
-                                <img id="imageGame" src="<?= htmlentities($jeu['Photo']) ?>" alt="<?= htmlentities($jeu['Nom']) ?>" class="card-img-top">
-                            </article>
-                            <article id="characteristics">
-                                <div>
-                                    <h3 class="p-2"><strong><?= htmlentities($jeu['Nom']) ?></strong></h3>
-                                    <p class="card-text"><strong>Catégorie : </strong><?= htmlentities($jeu['Categorie']) ?></p>
-                                    <p class="card-text"><strong>Mécanisme : </strong><?= htmlentities($jeu['Mecanisme']) ?></p>
-                                    <p class="card-text"><strong>Thème de Jeu : </strong><?= htmlentities($jeu['Theme']) ?></p>
-                                    <p class="card-text"><strong>Date de Création : </strong><?= htmlentities($jeu['jeu_dte_creation']) ?></p>
-                                    <p class="card-text"><strong>Pays : </strong><?= htmlentities($jeu['Pays']) ?></p>
-                                    <p class="card-text"><strong>Age : </strong><?= htmlentities($jeu['Age']) ?></p>
-                                    <p class="card-text"><strong>EAN : </strong><?= htmlentities($jeu['EAN']) ?></p>
-                                </div>
-                                <div>
-                                    <h5>Description de l'article </h5>
-                                </div>
-                            </article>
-                            <article id="basket">
+                <?php foreach ($jeux as $jeu): ?>
+                    <section id="gameSelect">
+                        <!-- <article id="image" > -->
+                        <img id="imageGame" src="<?= htmlentities($jeu['Photo']) ?>" alt="<?= htmlentities($jeu['Nom']) ?>" class="card-img-top p-2" style="height: auto; width:min-content">
+                        <!-- </article> -->
+                        <article id="characteristics">
+                            <div>
+                                <h3 class="p-2"><strong><?= htmlentities($jeu['Nom']) ?></strong></h3>
+                                <p class="card-text"><strong>Catégorie : </strong><?= htmlentities($jeu['Categorie']) ?></p>
+                                <p class="card-text"><strong>Mécanisme : </strong><?= htmlentities($jeu['Mecanisme']) ?></p>
+
+                                <p class="card-text"><strong>Thèmes(s) : </strong><?= htmlentities($tm) ?></p>
+                                <p class="card-text"><strong>Pays : </strong><?= htmlentities($jeu['Pays']) ?></p>
+                                <p class="card-text"><strong>Langue : </strong><?= htmlentities($jeu['Langue']) ?></p>
+                                <p class="card-text"><strong>Age : </strong><?= htmlentities($jeu['Age']) ?></p>
+                                <p class="card-text"><strong>EAN : </strong><?= htmlentities($jeu['EAN']) ?></p>
+                            </div>
+                            <div>
+                                <h5>Description de l'article </h5>
+                                <p class="card-text"> <?= htmlentities($jeu['Description'])?></p>
+                            </div>
+                        </article>
+                        <article id="basket">
                             <p class="card-text"><strong>Prix TTC : </strong><?= number_format($jeu['jeu_prix']) ?>€</p>
                             <p class="card-text"><strong>Auteur(s) : </strong><?= htmlentities($jeu['Auteur']) ?></p>
                             <button type="submit" name=""> <span>Ajouter au panier </span></button>
-                            </article>
-                        </section>
-                    <?php endforeach ?>
-                <?php endif ?>
+                        </article>
+                    </section>
+                <?php endforeach ?>
 
             </div>
         </article>

@@ -57,7 +57,7 @@
                 <div class="row justify-content-center">
                     <?php if (count($jeux) > 0): ?>
                         <?php foreach ($jeux as $jeu): ?>
-                            <div class="col-4 m-4">
+                            <div class="col-3 m-4">
                                 <a href="games.php?jeu_id<?= urlencode($jeu['jeu_id']) ?>" class="text-decoration-none">
                                     <div class="card p-3" id="classLeft">
                                         <img src="<?= htmlentities($jeu['Photo']) ?>" alt="<?= htmlentities($jeu['Nom']) ?>" class="card-img-top" style="height: auto; width: 100%; object-fit: cover;">
