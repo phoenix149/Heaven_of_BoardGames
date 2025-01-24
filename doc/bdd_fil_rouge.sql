@@ -1,4 +1,4 @@
- -- create database fil_rouge;
+create database fil_rouge;
 
 use fil_rouge;
 

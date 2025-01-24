@@ -10,7 +10,7 @@
 </head>
 <?php
 // Configuration de la base de données
-$host = '127.0.0.1';
+$host = 'localhost';
 $dbname = 'fil_rouge';
 $username = 'root';
 $password = '';
@@ -23,7 +23,6 @@ try {
     die("Erreur de connexion : " . $e->getMessage());
 }
 ?>
-
 
 <header>
     <section id="hSectionSessionNav">

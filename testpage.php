@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style/style.css">
+    <title>Heaven Of BoardGames</title>
+</head>
+<body>
+    <?php include './includes/header.php' ?>
+    <main>
+<?php
+
+$themes = $pdo->query("SELECT tdj_nom FROM theme_de_jeu 
+INNER JOIN jeu_theme  ON theme_de_jeu.tdj_id = jeu_theme.tdj_id
+WHERE jeu_id LIKE 4")->fetchAll(PDO::FETCH_ASSOC);
+
+$th= "";
+foreach ($themes as $theme) {
+    foreach ($theme as $tm) { 
+    $th .=$tm. " ";
+
+}
+}
+
+
+echo $th;
+
+?>
+    </main>
+    <?php include './includes/footer.php' ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+
+</html>
