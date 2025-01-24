@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -12,7 +12,7 @@
 
 <body>
     <?php include './includes/header.php' ?>
-awninh php
+    awninh php
     <main>
         <h2>Veuillez renseigner les informations concernant le jeu.</h2>
         <form id="form1" action="includes/formGame.php" method="post" enctype="multipart/form-data">

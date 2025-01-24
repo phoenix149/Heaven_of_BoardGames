@@ -54,10 +54,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $sql4 = "INSERT into Age (age_nom) values ('$middleAge')";
         $pdo->exec($sql4);
     };
-};
 
 
-  
+
+    <?php
 
 
     if (isset($_POST['gameName']) && !empty($_POST['gameName'])) { // Si le champ gameName est initialisé et n'est pas vide
@@ -86,17 +86,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $createDate = str_replace("/", "-", $_POST['createDate']); // Je remplace les "/" par des "-"
         $sql9 = "INSERT into Jeu (jeu_dte_creation) values ('$createDate')"; // Insert la valeur contenue dans $createDate dans le champ jeu_dte_creation de la table jeu
     }
-
-
-
-
-
-    ?>
-
-
-
-
-
-
-
-
+};

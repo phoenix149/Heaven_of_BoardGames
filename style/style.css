@@ -1,12 +1,12 @@
 /* Je reinitialise toutes les marges */
 * {
-    margin: 0px;
-    padding: 0px;
+  margin: 0px;
+  padding: 0px;
 }
 
 body {
-    background-image: url('../images/un fond dintrécran classe et luxueux pour un site web sur les jeux de sociétés.png');
-    background-size: 100%;
+  background-image: url("../images/un fond dintrécran classe et luxueux pour un site web sur les jeux de sociétés.png");
+  background-size: 100%;
 }
 
 /* #hSectionSessionNav {
@@ -17,310 +17,333 @@ body {
 } */
 
 #hSectionTop {
-    display: flex;
-    margin-top: 2%;
-    margin-right: 1%;
-    margin-left: 1%;
-    background-color: #2c1a0c;
-    width: 98%;
-    height: 25%;
-    border-radius: 10px;
-
+  display: flex;
+  margin-top: 2%;
+  margin-right: 1%;
+  margin-left: 1%;
+  background-color: #2c1a0c;
+  width: 98%;
+  height: 25%;
+  border-radius: 10px;
 }
 
 #hAsideLogo {
-    padding-bottom: 2%;
-    padding-top: 2%;
-    padding-left: 2%;
-    width: 25%;
-    height: auto;
+  padding-bottom: 2%;
+  padding-top: 2%;
+  padding-left: 2%;
+  width: 25%;
+  height: auto;
 }
 
 #hLogo {
-    width: 40%;
-    height: auto;
+  width: 40%;
+  height: auto;
 }
 
 #logoTitre {
-    width: 100%;
-    margin-top: 2%;
-    object-fit: contain;
-    font-size: 3.95rem;
-    color: #fff173;
+  width: 100%;
+  margin-top: 2%;
+  object-fit: contain;
+  font-size: 3.95rem;
+  color: #fff173;
 }
 
 footer {
-    display: flex;
-    justify-content: space-between;
-    border-radius: 10px;
-    margin-bottom: 1%;
-    margin-right: 1%;
-    margin-left: 1%;
-    width: 98%;
-    height: 100%;
-    background-color: #1A0F07;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+  margin-bottom: 1%;
+  margin-right: 1%;
+  margin-left: 1%;
+  width: 98%;
+  height: 100%;
+  background-color: #1a0f07;
 }
 
 main {
-    border: #2c1a0c 2px solid;
-    background-color: #FFF;
-    border-radius: 10px;
-    margin-right: 1%;
-    margin-left: 1%;
-    width: 98%;
-    height: 950px;
+  border: #2c1a0c 2px solid;
+  background-color: #fff;
+  border-radius: 10px;
+  /* margin-right: 15%;
+  margin-left: 15%; */
+  margin-top: 1%;
+  /* width: 98%;
+  height: 950px; */
 }
 
 #hArticleSearchbar {
-    text-align: center;
-    width: 45%;
-    margin-bottom: 2%;
+  text-align: center;
+  width: 45%;
+  margin-bottom: 2%;
 }
 
 #hChampSearch {
-    width: 95%;
-    height: auto;
+  width: 95%;
+  height: auto;
 }
 
 #hSearchButon {
-    background-color: #E25822;
-    border: 0px;
-    color: #fff173;
-
+  background-color: #e25822;
+  border: 0px;
+  color: #fff173;
 }
 
 #hSearch {
-    margin-top: 4%;
-    width: 100%;
+  margin-top: 4%;
+  width: 100%;
 }
 
 #hArticlePanierCompte {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-    margin-top: 2%;
-    margin-bottom: 2%;
-    margin-left: 6%;
-    border-radius: 10px;
-    height: auto;
-    width: 12%;
-
+  margin-top: 2%;
+  margin-bottom: 2%;
+  margin-left: 6%;
+  border-radius: 10px;
+  height: auto;
+  width: 12%;
 }
 
 #hMoncompteButon {
-    height: 48%;
-    color: #fff173;
-    border-color: #fff173;
+  height: 48%;
+  color: #fff173;
+  border-color: #fff173;
 }
 
 #hMonPanierButon {
-    height: 48%;
-    color: #fff173;
-    border-color: #fff173;
+  height: 48%;
+  color: #fff173;
+  border-color: #fff173;
 }
 
 #hMonPanierButon:hover {
-    background-color: #1A0F07;
+  background-color: #1a0f07;
 }
 
 #hMoncompteButon:hover {
-    background-color: #1A0F07;
+  background-color: #1a0f07;
 }
 
-
-
-
 #hReseauxTop {
-    margin-top: 2%;
-    margin-bottom: 2%;
-    margin-left: 2%;
-    border-radius: 10px;
-    height: auto;
-    width: 6%;
-
+  margin-top: 2%;
+  margin-bottom: 2%;
+  margin-left: 2%;
+  border-radius: 10px;
+  height: auto;
+  width: 6%;
 }
 
 .hRSLogo {
-    width: 45%;
-    height: auto;
-
+  width: 45%;
+  height: auto;
 }
 
 #titreRS {
-    color: #fff173;
+  color: #fff173;
 }
 
-
 #hSectionNavBar {
-    background-color: #2c1a0c;
-    margin-top: 0.3%;
-    margin-right: 1%;
-    margin-left: 1%;
-    width: 98%;
-    height: 100%;
-    border-radius: 10px;
-
+  background-color: #2c1a0c;
+  margin-top: 0.3%;
+  margin-right: 1%;
+  margin-left: 1%;
+  width: 98%;
+  height: 100%;
+  border-radius: 10px;
 }
 
 #hNavbar {
-    margin-top: 1%;
-    margin-bottom: 1%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    text-decoration: none;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  text-decoration: none;
 }
 
 .hLiensNav {
-    color: #B89F74;
-    text-decoration: none;   
+  color: #b89f74;
+  text-decoration: none;
 }
 
-.hLiensNav, a {
-    text-decoration: none;
+.hLiensNav,
+a {
+  text-decoration: none;
 }
 
 .hLiensNav:hover {
-    color:#fff173;
+  color: #fff173;
 }
 
 .hPipe {
-    color: darkgray;
+  color: darkgray;
 }
 
 header {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 #mSectionCarrousel {
-    margin-top: 1%;
-    margin-left: 5%;
-    margin-right: 5%;
-    width: 90%;
-    height: 18%;
-    overflow: hidden;
+  margin-top: 1%;
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 90%;
+  height: 18%;
+  overflow: hidden;
 }
 
 #fSectionLeft {
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: 1%;
-    margin-left: 1%;
-    width: 32%;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 1%;
+  margin-left: 1%;
+  width: 32%;
 }
 
 #fAdSociete {
-    margin-top: 1%;
-    width: 46%;
-    color: #B89F74;
+  margin-top: 1%;
+  width: 46%;
+  color: #b89f74;
 }
 
 #titreAD {
-    margin-top: 3%;
+  margin-top: 3%;
 }
 
 #fCguFaq {
-    display: flex;
-    flex-direction: column;
-    margin-top: 1%;
-    width: 46%;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1%;
+  width: 46%;
+  text-align: center;
 }
 
 .fLiens {
-    color: #B89F74;
-    text-decoration: none;
-    font-size: large;
+  color: #b89f74;
+  text-decoration: none;
+  font-size: large;
 }
 
 .fLiens:hover {
-    color: #fff173;
+  color: #fff173;
 }
 
 #faqLien {
-    font-size: large;
+  font-size: large;
 }
 
 #cfuLien {
-    margin-top: 3%;
-    font-size: large;
+  margin-top: 3%;
+  font-size: large;
 }
 
 #fSectionMid {
-    margin-top: 1%;
-    width: 32%;
-    color: #B89F74;
-    text-align: center;
+  margin-top: 1%;
+  width: 32%;
+  color: #b89f74;
+  text-align: center;
 }
 
 #fNavRS {
-    margin-top: 3%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    object-fit: contain;
-    width: 100%;
+  margin-top: 3%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  object-fit: contain;
+  width: 100%;
 }
 
 .fRSLogo {
-    border: #B89F74 2px solid;
-    width: 30%;
-    height: auto;
-    border-radius: 40px;
+  border: #b89f74 2px solid;
+  width: 30%;
+  height: auto;
+  border-radius: 40px;
 }
 
 .fRSLogo:hover {
-    border: #fff173 3px solid;
+  border: #fff173 3px solid;
 }
 
 #fSectionRight {
-    margin-top: 1%;
-    margin-right: 1%;
-    width: 32%;
+  margin-top: 1%;
+  margin-right: 1%;
+  width: 32%;
 }
 
 #fArticlePL {
-    text-align: center;
+  text-align: center;
 }
 
 #paiementLien {
-    margin-top: 3%;
-    font-size: large;
+  margin-top: 3%;
+  font-size: large;
 }
 
 #livraisonLien {
-    font-size: large;
+  font-size: large;
 }
 
 #aproposLien {
-    font-size: large;
+  font-size: large;
 }
 
 #copyright {
-    padding-bottom: 2%;
-    margin-top: 2%;
-    color: darkgray;
+  padding-bottom: 2%;
+  margin-top: 2%;
+  color: darkgray;
 }
 
 #marque {
-    color: #B89F74;
+  color: #b89f74;
 }
 
 #buttonTop {
-    margin-bottom: 1%;
-    font-size: 22pt;
-    font-weight: bold;
-    width: 0.8%;
-    margin-left: 99%;
-    background-color: #1A0F07;
-    border: 0;
-    color: #B89F74;
-    height: 30px;
-
+  margin-bottom: 1%;
+  font-size: 22pt;
+  font-weight: bold;
+  width: 0.8%;
+  margin-left: 99%;
+  background-color: #1a0f07;
+  border: 0;
+  color: #b89f74;
+  height: 30px;
 }
 
 #buttonTop:hover {
-    color: #FFF;
+  color: #fff;
+}
+
+/*Affichage des jeux*/
+
+#gameSelect {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  background-color: #fff;
+  padding: 20px;
+}
+
+#image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+#imageGame {
+  max-width: 50%;
+  max-height: 50%;
+  object-fit: cover;
+}
+
+#classLeft {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
