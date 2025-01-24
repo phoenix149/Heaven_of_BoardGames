@@ -18,6 +18,11 @@ if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
 }
 $modifBDDAuthors = false;
 $modifBDDEditors = false;
+$modifBDDMechanism = false;
+$modifBDDTheme = false;
+$modifBDDCategory = false;
+
+// Ajouter un Auteur à la base de donnée
 
 if (isset($_POST['addAuthor']) && !empty($_POST['addAuthor'])) {
 
@@ -38,7 +43,69 @@ if (isset($_POST['addAuthor']) && !empty($_POST['addAuthor'])) {
     $modifBDDAuthors = true;
     $idNewAuthor = $pdo->lastInsertId();
 }
+// Ajouter une Categorie à la base de donnée
+if (isset($_POST['addCategory']) && !empty($_POST['addCategory'])) {
 
+    $addCategory = $_POST['addCategory'];
+
+    // J'écris ma requête SQL
+    $sql = "INSERT INTO `categories` (`ctg_nom`) values (:ctg_nom)";
+
+    // Je prépare ma requête
+    $request = $pdo->prepare($sql);
+
+    // J'injecte mes valeurs
+    $request->bindValue(":ctg_nom", $addCategory, PDO::PARAM_STR);
+
+    // J'éxécute ma requête
+    $request->execute();
+
+    $modifBDDCategory = true;
+    $idNewCategory = $pdo->lastInsertId();
+}
+
+//Ajouter un nouveau Thème à la base de donnée
+if (isset($_POST['addGameTheme']) && !empty($_POST['addGameTheme'])) {
+
+    $addGameTheme = $_POST['addGameTheme'];
+
+    // J'écris ma requête SQL
+    $sql = "INSERT INTO `theme_de_jeu` (`tdj_nom`) values (:tdj_nom)";
+
+    // Je prépare ma requête
+    $request = $pdo->prepare($sql);
+
+    // J'injecte mes valeurs
+    $request->bindValue(":tdj_nom", $addGameTheme, PDO::PARAM_STR);
+
+    // J'éxécute ma requête
+    $request->execute();
+
+    $modifBDDTheme = true;
+    $idNewTheme = $pdo->lastInsertId();
+}
+
+// Ajouter un Méchanisme à la base de donnée
+if (isset($_POST['addMechanism']) && !empty($_POST['addMechanism'])) {
+
+    $addMechanism = $_POST['addMechanism'];
+
+    // J'écris ma requête SQL
+    $sql = "INSERT INTO `mecanisme` (`m_nom`) values (:m_nom)";
+
+    // Je prépare ma requête
+    $request = $pdo->prepare($sql);
+
+    // J'injecte mes valeurs
+    $request->bindValue(":m_nom", $addMechanism, PDO::PARAM_STR);
+
+    // J'éxécute ma requête
+    $request->execute();
+
+    $modifBDDMechanism = true;
+    $idNewMechanism = $pdo->lastInsertId();
+}
+// Ajouter un nouvel éditeur à la base de donnée
 if (isset($_POST['addEditor']) && !empty($_POST['addEditor'])) {
 
     $addEditor = $_POST['addEditor'];
@@ -82,12 +149,22 @@ if (isset($_POST['ean'])) {
     $mechanism_ID = $_POST['mechanism'];
     $stockGame = $_POST['stockGame'];
 
-    if ($modifBDDEditors == true) {
+    if ($modifBDDEditors == true) { //Si l'utilisateur a écrit dans le champ ajouter un éditeur alors c'est celui-ci qui sera pris en compte 
         $editor_ID = $idNewEditor;
     }
 
     if ($modifBDDAuthors == true) {
         $author_ID = $idNewAuthor;
+    }
+    
+    if ($modifBDDMechanism == true) {
+        $mechanism_ID = $idNewMechanism;
+    }
+    if ($modifBDDTheme == true) {
+        $gameTheme = $idNewTheme;
+    }
+    if ($modifBDDCategory == true) {
+        $category_ID = $idNewCategory;
     }
 
     // // J'écris ma requête SQL
@@ -147,11 +224,6 @@ if (isset($_POST['ean'])) {
 
     header ('location:./index.php');
 }
-// $middleAge = $_POST['middleAge'];
-// echo "Est-ce qu'on voit ce texte ?";
-// echo "<p>$middleAge</p>";
-
-
 
 ?>
 </main>

@@ -55,6 +55,8 @@
                             </option>
                         <?php endforeach; ?>
                 </select>
+                <label for="addGameTheme">Ajouter un Thème à la base de donnée</label>
+                <input type="text" name="addGameTheme">
             </div>
             <br>
             <div>
@@ -99,7 +101,7 @@
                             </option>
                         <?php endforeach; ?>
                     </select>
-                    <label for="addAuthor">Ajouter un auteur à la Base de donnée :</label>
+                    <label for="addAuthor">Ajouter un Auteur à la Base de donnée :</label>
                     <input type="text" name="addAuthor" id="">
             </div>
             <br>
@@ -113,7 +115,7 @@
                             </option>
                         <?php endforeach; ?>
                     </select>
-                    <label for="addEditor">Ajouter un éditeur à la Base de donnée :</label>
+                    <label for="addEditor">Ajouter un Éditeur à la Base de donnée :</label>
                     <input type="text" name="addEditor" id="">
             </div>
             <br>
@@ -156,6 +158,8 @@
                             </option>
                         <?php endforeach; ?>
                 </select>
+                <label for="addCategory">Ajouter une Catégorie dans la base de donnée</label>
+                <input type="text" name="addCategory">
             </div>
             <br>
             <div>
@@ -168,6 +172,8 @@
                             </option>
                         <?php endforeach; ?>
                 </select>
+                <label for="addMechanism">Ajouter un Méchanisme à la Base de donnée :</label>
+                    <input type="text" name="addMechanism" id="">
             </div>
             <br>
             <div>
