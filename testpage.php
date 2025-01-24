@@ -18,8 +18,11 @@ INNER JOIN jeu_theme  ON theme_de_jeu.tdj_id = jeu_theme.tdj_id
 WHERE jeu_id LIKE 4")->fetchAll(PDO::FETCH_ASSOC);
 
 $th= "";
-foreach ($themes as $theme=>$tm) {
+foreach ($themes as $theme) {
+    foreach ($theme as $tm) { 
     $th .=$tm. " ";
+
+}
 }
 
 
