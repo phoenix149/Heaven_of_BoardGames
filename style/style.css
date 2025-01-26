@@ -318,13 +318,22 @@ header {
 
 /*Affichage des jeux*/
 
+#price, #stockMessage {
+  font-weight: bold;
+}
+
+#basket {
+  margin-top: 12px;
+  font-size: x-large;
+}
+
 #gameSelect {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
   justify-content: space-evenly;
   background-color: #fff;
-  padding: 20px;
+  margin-top: 20px;
+  margin-left: 1%;
 }
 
 #image {
@@ -336,10 +345,19 @@ header {
 }
 
 #imageGame {
-  max-width: 50%;
-  max-height: 50%;
-  object-fit: cover;
+width: 20%;
+  /* height: fit-content; */
+  /* max-height: 50%; */
+  object-fit: contain;
 }
+
+#descGame {
+  margin-left: 1%;
+  margin-top: 5%;
+  margin-right: 1%;
+  padding-bottom: 2%;
+}
+
 
 #classLeft {
   display: flex;
@@ -354,5 +372,8 @@ header {
     font-size:larger;
     display: flex;
     justify-content:center;
+}
+#mArticleLeft {
+  width: 98%;
 }
 

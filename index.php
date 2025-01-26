@@ -46,7 +46,8 @@
         INNER JOIN Pays p ON j.pays_id = p.pays_id
         INNER JOIN Mecanisme m ON j.m_id = m.m_id
         INNER JOIN Categories c ON j.ctg_id = c.ctg_id
-        INNER JOIN Age a ON j.age_id = a.age_id";
+        INNER JOIN Age a ON j.age_id = a.age_id
+        Order by jeu_id desc";
 
         // Exécution de la requête
         $jeux = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
@@ -56,14 +57,21 @@
             <article id="mArticleLeft">
                 <div class="row justify-content-center">
                     <?php if (count($jeux) > 0): ?>
-                        <?php foreach ($jeux as $jeu): ?>
+                        <?php foreach ($jeux as $jeu):  ?>
+                            <?php if ($jeu['jeu_qte_stc'] > 0) {
+                        $stockMessage = "Produit en stock";
+                    } else {
+
+                        $stockMessage = "Produit en rupture de stock";
+                    }?>
                             <div class="col-3 m-4">
-                                <a href="games.php?jeu_id<?= urlencode($jeu['jeu_id']) ?>" class="text-decoration-none">
+                                <a href="games.php?id=<?= urlencode($jeu['jeu_id']) ?>" class="text-decoration-none">
                                     <div class="card p-3" id="classLeft">
                                         <img src="<?= htmlentities($jeu['Photo']) ?>" alt="<?= htmlentities($jeu['Nom']) ?>" class="card-img-top" style="height: auto; width: 100%; object-fit: cover;">
                                         <div class="card-body">
                                             <h5 class="card-title"><?= htmlentities($jeu['Nom']) ?></h5>
-                                            <p class="card-text"><strong>Prix TTC : </strong><?= number_format($jeu['jeu_prix']) ?>€</p>
+                                            <p class="card-text" id="price"><strong>Prix TTC : </strong><?= $jeu['jeu_prix'] ?>€</p>
+                                            <p class="card-text" id=""><?= htmlentities($stockMessage) ?></p>
                                         </div>
                                     </div>
                                 </a>

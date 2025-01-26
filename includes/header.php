@@ -36,8 +36,8 @@ try {
 
             <h1 id="logoTitre">Heaven of BoardGames</h1>
 
-            <form class="d-flex" role="search" id="hSearch">
-                <input class="form-control me-2" type="search" id="hChampSearch" placeholder="Rechercher un jeu..." aria-label="Search">
+            <form class="d-flex" role="search" id="hSearch" method="get" action="games.php">
+                <input class="form-control me-2" type="search" id="hChampSearch" placeholder="Rechercher un jeu..." aria-label="Search" name="search">
                 <button class="btn btn-outline-success" id="hSearchButon" type="submit">Rechercher</button>
             </form>
 
