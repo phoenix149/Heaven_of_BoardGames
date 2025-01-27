@@ -43,7 +43,7 @@ try {
 
         </article>
         <article id="hArticlePanierCompte">
-            <button class="btn btn-outline-success" id="hMoncompteButon">Mon Compte</button>
+            <a class="btn btn-outline-success" id="hMoncompteButon" href="connexion.php">Mon Compte</a>
             <button class="btn btn-outline-success" id="hMonPanierButon">Mon Panier</button>
         </article>
         <aside id="hReseauxTop">
