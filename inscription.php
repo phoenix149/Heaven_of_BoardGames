@@ -54,6 +54,10 @@
         if ($existing_user) {
             echo "<p style='color:red;'>Le pseudo ou l'email est déjà utilisé.</p>";
             exit();
+        /* The `}` closing curly brace in the code snippet you provided is closing the PHP `if`
+        statement block that starts with `if (['REQUEST_METHOD'] === 'POST') {`. This block
+        of code contains the logic for processing the form submission when the HTTP request method
+        is POST. The closing curly brace `}` signifies the end of that conditional block in PHP. */
         }
 
         // Hashage du mot de passe
