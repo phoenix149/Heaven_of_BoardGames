@@ -96,16 +96,15 @@
         INNER JOIN auteurs a ON ja.a_id = a.a_id
         INNER JOIN jeu_langues jl ON j.jeu_id = jl.jeu_id
         INNER JOIN langues l ON jl.l_id = l.l_id
-        WHERE ucase(j.jeu_nom) LIKE ucase('%".$getName."%')";
+        WHERE ucase(j.jeu_nom) LIKE ucase('%" . $getName . "%')";
 
             // Exécution de la requête
             $jeux = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
-            foreach($jeux as $game1) { 
+            foreach ($jeux as $game1) {
 
-            $id = htmlentities($game1['j_id']);
-
-        }
+                $id = htmlentities($game1['j_id']);
+            }
 
             //Requêtes pour récupérer tous les thèmes 
             $themes = $pdo->query("SELECT  tdj_nom FROM jeu_theme jt 
@@ -166,19 +165,44 @@
                                 echo "<button type='submit' name='' class='btn btn-primary'> <span>Ajouter au panier </span></button>";
                             } ?>
                             <a href="edit.php?id=<?= urlencode($id) ?>"><button class="btn btn-primary">Modifier</button></a>
+                            <a href="deleteGame.php?id=<?= urlencode($id) ?>"><button type="button" id="modal" onclick="ouvrirModal()" class="btn btn-secondary">Supprimer le Jeu</button></a>
 
                         </article>
                     </section>
-                    
-                </div>
-            </article>
-            <div id="descGame">
-                <h5>Description de l'article </h5>
-                <p class="card-text"> <?= htmlentities($jeu['Description']) ?></p>
+
             </div>
-            <?php endforeach ?>
+        </article>
+        <div id="descGame">
+            <h5>Description de l'article </h5>
+            <p class="card-text"> <?= htmlentities($jeu['Description']) ?></p>
+        </div>
+    <?php endforeach ?>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fermerModal()">&times;</span>
+            <p>Êtes-vous sûr de vouloir supprimer ce jeu ?</p>
+            <button type="button" onclick="confirmerSuppression()">Oui</button>
+            <button type="button" onclick="fermerModal()">Non</button>
+        </div>
+    </div>
+
+    <!-- <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="fermerModal()">&times;</span>
+      <p>Êtes-vous sûr de vouloir supprimer cet élément ?</p>
+      <form id="deleteForm" action="votre_script_de_suppression.php" method="post">
+        <input type="hidden" name="id" value="5">
+        <button type="submit">Oui</button>
+        <button type="button" onclick="fermerModal()">Non</button>
+      </form>
+    </div>
+  </div> 
+  Remplacez par celle là et faire un if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $id = $_POST['id']; en php ça va mieux le faire-->
 
 
+    <script src="script/script.js"></script>
     </main>
     <?php include './includes/footer.php' ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

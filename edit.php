@@ -111,61 +111,62 @@
 
                 $request->execute();
             }
-        } elseif (isset($_GET['search']) && !empty($_GET['search'])) {
-            $getName = $_GET['search'];
-            // Requête SQL pour récupérer les informations des jeux 
-            $sql = "SELECT j.jeu_id,
-        j.jeu_nom AS Nom, 
-        j.jeu_img AS Photo, 
-        j.jeu_prix,
-        jeu_description AS Description, 
-        j.jeu_EAN AS EAN, 
-        j.jeu_dte_creation, 
-        j.jeu_temps, 
-        j.jeu_qte_stc, 
-        j.jeu_note,
-        p.pays_nom AS Pays,
-        c.ctg_nom AS Categorie,
-        ag.age_nom AS Age,
-        m.m_nom AS Mecanisme,
-        -- tdj_nom AS Theme,
-        a_nom AS Auteur,
-        l_nom AS Langue
-        FROM Jeu j
-        INNER JOIN Pays p ON j.pays_id = p.pays_id
-        INNER JOIN Mecanisme m ON j.m_id = m.m_id
-        INNER JOIN Categories c ON j.ctg_id = c.ctg_id
-        INNER JOIN Age ag ON j.age_id = ag.age_id
-        -- INNER JOIN jeu_theme jt ON j.jeu_id = jt.jeu_id
-        -- INNER JOIN theme_de_jeu tdj ON jt.tdj_id = tdj.tdj_id
-        INNER JOIN jeu_auteurs ja ON j.jeu_id = ja.jeu_id
-        INNER JOIN auteurs a ON ja.a_id = a.a_id
-        INNER JOIN jeu_langues jl ON j.jeu_id = jl.jeu_id
-        INNER JOIN langues l ON jl.l_id = l.l_id
-        WHERE ucase(j.jeu_nom) LIKE ucase('%" . $getName . "%')";
+         } 
+        //elseif (isset($_GET['search']) && !empty($_GET['search'])) {
+        //     $getName = $_GET['search'];
+        //     // Requête SQL pour récupérer les informations des jeux 
+        //     $sql = "SELECT j.jeu_id,
+        // j.jeu_nom AS Nom, 
+        // j.jeu_img AS Photo, 
+        // j.jeu_prix,
+        // jeu_description AS Description, 
+        // j.jeu_EAN AS EAN, 
+        // j.jeu_dte_creation, 
+        // j.jeu_temps, 
+        // j.jeu_qte_stc, 
+        // j.jeu_note,
+        // p.pays_nom AS Pays,
+        // c.ctg_nom AS Categorie,
+        // ag.age_nom AS Age,
+        // m.m_nom AS Mecanisme,
+        // -- tdj_nom AS Theme,
+        // a_nom AS Auteur,
+        // l_nom AS Langue
+        // FROM Jeu j
+        // INNER JOIN Pays p ON j.pays_id = p.pays_id
+        // INNER JOIN Mecanisme m ON j.m_id = m.m_id
+        // INNER JOIN Categories c ON j.ctg_id = c.ctg_id
+        // INNER JOIN Age ag ON j.age_id = ag.age_id
+        // -- INNER JOIN jeu_theme jt ON j.jeu_id = jt.jeu_id
+        // -- INNER JOIN theme_de_jeu tdj ON jt.tdj_id = tdj.tdj_id
+        // INNER JOIN jeu_auteurs ja ON j.jeu_id = ja.jeu_id
+        // INNER JOIN auteurs a ON ja.a_id = a.a_id
+        // INNER JOIN jeu_langues jl ON j.jeu_id = jl.jeu_id
+        // INNER JOIN langues l ON jl.l_id = l.l_id
+        // WHERE ucase(j.jeu_nom) LIKE ucase('%" . $getName . "%')";
 
-            // Exécution de la requête
-            $jeux = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+        //     // Exécution de la requête
+        //     $jeux = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
-            foreach ($jeux as $game1) {
+        //     foreach ($jeux as $game1) {
 
-                $id = htmlentities($game1['j.jeu_id']);
-            }
+        //         $id = htmlentities($game1['j.jeu_id']);
+        //     }
 
-            //Requêtes pour récupérer tous les thèmes 
-            $themes = $pdo->query("SELECT  tdj_nom FROM jeu_theme jt 
-        INNER JOIN theme_de_jeu tj  ON jt.tdj_id = tj.tdj_id
-        WHERE jeu_id LIKE $id")->fetchAll(PDO::FETCH_ASSOC);
+        //     //Requêtes pour récupérer tous les thèmes 
+        //     $themes = $pdo->query("SELECT  tdj_nom FROM jeu_theme jt 
+        // INNER JOIN theme_de_jeu tj  ON jt.tdj_id = tj.tdj_id
+        // WHERE jeu_id LIKE $id")->fetchAll(PDO::FETCH_ASSOC);
 
 
-            // On fait une boucle pour afficher tous les thèmes d'un jeu
-            $tm = "";
-            foreach ($themes as $theme) {
-                foreach ($theme as $th) {
-                    $tm .= $th . " ";
-                }
-            };
-        }
+        //     // On fait une boucle pour afficher tous les thèmes d'un jeu
+        //     $tm = "";
+        //     foreach ($themes as $theme) {
+        //         foreach ($theme as $th) {
+        //             $tm .= $th . " ";
+        //         }
+        //     };
+        // }
         // else {
         //     header('Location: index.php');
         // }
