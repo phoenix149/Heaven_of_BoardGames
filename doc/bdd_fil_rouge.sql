@@ -94,7 +94,7 @@ CREATE TABLE Jeu(
    jeu_img VARCHAR(500)  NOT NULL,
    jeu_prix DECIMAL(15,2) NOT NULL,
    jeu_EAN VARCHAR(50)  NOT NULL,
-   jeu_dte_sortie DATE,
+   jeu_dte_creation DATE,
    jeu_nb_joueurs VARCHAR(50)  NOT NULL,
    jeu_description VARCHAR(2500)  NOT NULL,
    jeu_temps VARCHAR(50)  NOT NULL,
