@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     } else {
         // Identifiants incorrects, affichage d'un message d'erreur
-        $error_message = "Email ou mot de passe incorrect.";
+        $error_message = "Pseudo ou mot de passe incorrect.";
     }
 }
 ?>

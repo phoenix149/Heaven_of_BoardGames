@@ -26,10 +26,7 @@
         // Récupération des données du formulaire en méthode POST
         $nom = htmlentities($_POST['nom']);
         $prenom = htmlentities($_POST['prenom']);
-        $date_naissance = $_POST['date_naissance'];
-        $numero_rue = $_POST['numero_rue'];
-        $nom_rue = htmlentities($_POST['nom_rue']);
-        $complement_adresse = htmlentities($_POST['complement_adresse'] ?? '');
+        $adresse = htmlentities($_POST['adresse'] ?? '');
         $code_postal = $_POST['code_postal'];
         $ville = htmlentities($_POST['ville']);
         $telephone = $_POST['telephone'];
@@ -54,10 +51,6 @@
         if ($existing_user) {
             echo "<p style='color:red;'>Le pseudo ou l'email est déjà utilisé.</p>";
             exit();
-        /* The `}` closing curly brace in the code snippet you provided is closing the PHP `if`
-        statement block that starts with `if (['REQUEST_METHOD'] === 'POST') {`. This block
-        of code contains the logic for processing the form submission when the HTTP request method
-        is POST. The closing curly brace `}` signifies the end of that conditional block in PHP. */
         }
 
         // Hashage du mot de passe
@@ -73,23 +66,31 @@
         // Récupération de l'identifiant de l'utilisateur inséré
         $user_id = $pdo->lastInsertId();
 
-        // Insertion dans la table client
-        $stmt = $pdo->prepare("INSERT INTO client (clt_nom, clt_prenom, clt_date_naissance, clt_numero_rue, clt_nom_rue, clt_complement_adresse, clt_code_postal, clt_ville, clt_telephone, u_id) 
-        VALUES (:nom, :prenom, :date_naissance, :numero_rue, :nom_rue, :complement_adresse, :code_postal, :ville, :telephone, :user_id)");
+        // Vérification si le client existe déjà
+        $stmt = $pdo->prepare("SELECT * FROM client WHERE clt_nom = :nom AND clt_prenom = :prenom AND clt_numero_tel = :telephone");
         $stmt->bindValue(':nom', $nom);
         $stmt->bindValue(':prenom', $prenom);
-        $stmt->bindValue(':date_naissance', $date_naissance);
-        $stmt->bindValue(':numero_rue', $numero_rue);
-        $stmt->bindValue(':nom_rue', $nom_rue);
-        $stmt->bindValue(':complement_adresse', $complement_adresse);
+        $stmt->bindValue(':telephone', $telephone);
+        $stmt->execute();
+        $existing_client = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($existing_client) {
+            echo "<p style='color:red;'>Le client existe déjà avec ce numéro de téléphone.</p>";
+            exit();
+        }
+
+        // Insertion dans la table client
+        $stmt = $pdo->prepare("INSERT INTO client (clt_nom, clt_prenom, clt_adress, clt_cp, clt_ville, clt_numero_tel, u_id) 
+         VALUES (:nom, :prenom, :adresse, :code_postal, :ville, :telephone, :user_id)");
+        $stmt->bindValue(':nom', $nom);
+        $stmt->bindValue(':prenom', $prenom);
+        $stmt->bindValue(':adresse', $adresse);
         $stmt->bindValue(':code_postal', $code_postal);
         $stmt->bindValue(':ville', $ville);
         $stmt->bindValue(':telephone', $telephone);
         $stmt->bindValue(':user_id', $user_id);
         $stmt->execute();
 
-        // Connexion automatique de l'utilisateur après son inscription
-        $_SESSION['user_id'] = $user_id;
 
         header('Location: index.php'); // Redirection vers la page d'accueil
         exit();
@@ -114,21 +115,8 @@
                 <input type="text" name="pseudo" required>
             </div>
             <div>
-                <label for="date_naissance">Date de naissance</label>
-                <input type="date" name="date_naissance" required>
-            </div>
-            <div>
-                <p>Adresse</p>
-                <label for="numero_rue">N° de rue</label>
-                <input type="number" name="numero_rue" required>
-            </div>
-            <div>
-                <label for="nom_rue">Nom de rue</label>
-                <input type="text" name="nom_rue" required>
-            </div>
-            <div>
-                <label for="complement_adresse">Complément d'adresse</label>
-                <input type="text" name="complement_adresse">
+                <label for="complement_adresse">Adresse</label>
+                <input type="text" name="Adresse">
             </div>
             <div>
                 <label for="code_postal">Code postal</label>
@@ -165,4 +153,5 @@
     <?php include './includes/footer.php'; ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
+
 </html>
