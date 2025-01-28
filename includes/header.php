@@ -8,7 +8,11 @@
     <link rel="stylesheet" href="style/style.css">
     <title>Heaven Of BoardGames</title>
 </head>
+
+<body>
 <?php
+// Démarrer la session
+session_start();
 // Configuration de la base de données
 $host = 'localhost';
 $dbname = 'fil_rouge';
@@ -78,14 +82,14 @@ try {
                     </li>
                     <?php if ($isCommercialOrAdmin): ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="Produit.php">Ajouter un produit</a>
+                            <a class="nav-link" href="addGame.php">Ajouter un produit</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Categories
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="Categories.php">Toutes les catégories</a></li>
+                                <li><a class="dropdown-item" href="games.php">Toutes les catégories</a></li>
                                 <li><a class="dropdown-item" href="Categorie.php">Ajouter une catégorie</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -98,7 +102,7 @@ try {
                 <div class="d-flex">
                     <?php if ($username): ?>
                         <span class="navbar-text me-3">Bienvenue, <?= htmlentities($username) ?>!</span>
-                        <a href="logout.php" class="btn btn-danger">Se déconnecter</a>
+                        <a href="deconnexion.php" class="btn btn-danger">Se déconnecter</a>
                     <?php else: ?>
                         <a href="connexion.php" class="btn btn-outline-primary me-2">Login</a>
                         <a href="inscription.php" class="btn btn-primary">Register</a>
@@ -150,7 +154,7 @@ try {
                 <h3 class="hLiensNav">Jeux D'ambiances</h3>
             </a>
             <h3 class="hPipe">|</h3>
-            <a href="#">
+            <a href="jeux_enfants.php">
                 <h3 class="hLiensNav">Jeux Enfants</h3>
             </a>
             <h3 class="hPipe">|</h3>
