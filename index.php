@@ -64,12 +64,14 @@
 
                         $stockMessage = "Produit en rupture de stock";
                     }?>
-                            <div class="col-3 m-4">
+                            <div class="col-3 m-1" id="">
                                 <a href="games.php?id=<?= urlencode($jeu['jeu_id']) ?>" class="text-decoration-none">
                                     <div class="card p-3" id="classLeft">
-                                        <img src="<?= htmlentities($jeu['Photo']) ?>" alt="<?= htmlentities($jeu['Nom']) ?>" class="card-img-top" style="height: auto; width: 100%; object-fit: cover;">
+                                        <div id = i_imgContainer>
+                                        <img src="<?= htmlentities($jeu['Photo']) ?>" alt="<?= htmlentities($jeu['Nom']) ?>" class="card-img-top">
+                                    </div>
                                         <div class="card-body">
-                                            <h5 class="card-title"><?= htmlentities($jeu['Nom']) ?></h5>
+                                            <h6 class="card-title"><?= htmlentities($jeu['Nom']) ?></h6>
                                             <p class="card-text" id="price"><strong>Prix TTC : </strong><?= $jeu['jeu_prix'] ?>€</p>
                                             <p class="card-text" id=""><?= htmlentities($stockMessage) ?></p>
                                         </div>
