@@ -165,7 +165,11 @@
                                 echo "<button type='submit' name='' class='btn btn-primary'> <span>Ajouter au panier </span></button>";
                             } ?>
                             <a href="edit.php?id=<?= urlencode($id) ?>"><button class="btn btn-primary">Modifier</button></a>
-                            <a href="deleteGame.php?id=<?= urlencode($id) ?>"><button type="button" id="modal" onclick="ouvrirModal()" class="btn btn-secondary">Supprimer le Jeu</button></a>
+
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Supprimer le Jeu
+                            </button>
+
 
                         </article>
                     </section>
@@ -178,29 +182,28 @@
         </div>
     <?php endforeach ?>
 
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="fermerModal()">&times;</span>
-            <p>Êtes-vous sûr de vouloir supprimer ce jeu ?</p>
-            <button type="button" onclick="confirmerSuppression()">Oui</button>
-            <button type="button" onclick="fermerModal()">Non</button>
+
+
+    <!-- Modal -->
+     <!-- Affichons une modal pour confirmer la suppression -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Suppression</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Êtes-vous sûr de vouloir supprimer ce Jeu ?
+                </div>
+                <div class="modal-footer">
+                    <a href="deleteGame.php?id=<?= urlencode($id) ?>">
+                        <button type="button" id="delete" class="btn btn-primary">Confirmer</button></a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                </div>
+            </div>
         </div>
     </div>
-
-    <!-- <div id="modal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="fermerModal()">&times;</span>
-      <p>Êtes-vous sûr de vouloir supprimer cet élément ?</p>
-      <form id="deleteForm" action="votre_script_de_suppression.php" method="post">
-        <input type="hidden" name="id" value="5">
-        <button type="submit">Oui</button>
-        <button type="button" onclick="fermerModal()">Non</button>
-      </form>
-    </div>
-  </div> 
-  Remplacez par celle là et faire un if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $id = $_POST['id']; en php ça va mieux le faire-->
-
 
     <script src="script/script.js"></script>
     </main>

@@ -45,7 +45,7 @@
     } else {
         echo "Échec de la suppréssion";
     }
-
+    // }
     //Redirection vers la page d'accueil
     header('location:./index.php');
     ?>
