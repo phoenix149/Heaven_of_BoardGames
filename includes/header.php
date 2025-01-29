@@ -44,7 +44,7 @@ try {
         </article>
         <article id="hArticlePanierCompte">
             <button class="btn btn-outline-success" id="hMoncompteButon">Mon Compte</button>
-            <button class="btn btn-outline-success" id="hMonPanierButon">Mon Panier</button>
+            <button class="btn btn-outline-success" ><a id="hMonPanierButon" href="basket.php">Mon Panier</a></button>
         </article>
         <aside id="hReseauxTop">
             <h6 id="titreRS">Nos réseaux</h6>

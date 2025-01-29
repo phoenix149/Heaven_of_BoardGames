@@ -19,13 +19,14 @@
         if (isset($_GET['id']) && !empty($_GET['id'])) {
             $id = $_GET['id'];
             // Requête SQL pour récupérer les informations des jeux 
-            $sql = "SELECT j.jeu_id,
+            $sql = "SELECT j.jeu_id as j_id,
         j.jeu_nom AS Nom, 
         j.jeu_img AS Photo, 
         j.jeu_prix,
         jeu_description AS Description, 
         j.jeu_EAN AS EAN, 
         j.jeu_dte_creation, 
+        j.jeu_nb_joueurs,
         j.jeu_temps, 
         j.jeu_qte_stc, 
         j.jeu_note,
@@ -35,8 +36,10 @@
         m.m_nom AS Mecanisme,
         -- tdj_nom AS Theme,
         a_nom AS Auteur,
-        l_nom AS Langue
+        l_nom AS Langue,
+        edit_nom AS Editeur
         FROM Jeu j
+        INNER JOIN Editeur e ON j.edit_id = e.edit_id 
         INNER JOIN Pays p ON j.pays_id = p.pays_id
         INNER JOIN Mecanisme m ON j.m_id = m.m_id
         INNER JOIN Categories c ON j.ctg_id = c.ctg_id
@@ -75,6 +78,7 @@
         jeu_description AS Description, 
         j.jeu_EAN AS EAN, 
         j.jeu_dte_creation, 
+        j.jeu_nb_joueurs,
         j.jeu_temps, 
         j.jeu_qte_stc, 
         j.jeu_note,
@@ -84,8 +88,10 @@
         m.m_nom AS Mecanisme,
         -- tdj_nom AS Theme,
         a_nom AS Auteur,
-        l_nom AS Langue
+        l_nom AS Langue,
+        edit_nom AS Editeur
         FROM Jeu j
+        INNER JOIN Editeur e ON j.edit_id = e.edit_id 
         INNER JOIN Pays p ON j.pays_id = p.pays_id
         INNER JOIN Mecanisme m ON j.m_id = m.m_id
         INNER JOIN Categories c ON j.ctg_id = c.ctg_id
@@ -150,9 +156,13 @@
                                 <p class="card-text"><strong>Catégorie : </strong><?= htmlentities($jeu['Categorie']) ?></p>
                                 <p class="card-text"><strong>Mécanisme : </strong><?= htmlentities($jeu['Mecanisme']) ?></p>
                                 <p class="card-text"><strong>Thèmes(s) : </strong><?= htmlentities($tm) ?></p>
+                                <p class="card-text"><strong>Année : </strong><?= htmlentities($jeu['jeu_dte_creation']) ?></p>
+                                <p class="card-text"><strong>Nombre de joueurs : </strong><?= htmlentities($jeu['jeu_nb_joueurs']) ?></p>
+                                <p class="card-text"><strong>Temps de Jeu : </strong><?= htmlentities($jeu['jeu_temps']) ?></p>
                                 <p class="card-text"><strong>Pays : </strong><?= htmlentities($jeu['Pays']) ?></p>
                                 <p class="card-text"><strong>Langue : </strong><?= htmlentities($jeu['Langue']) ?></p>
                                 <p class="card-text"><strong>Auteur(s) : </strong><?= htmlentities($jeu['Auteur']) ?></p>
+                                <p class="card-text"><strong>Éditeur(s) : </strong><?= htmlentities($jeu['Editeur']) ?></p>
                                 <p class="card-text"><strong>Age : </strong><?= htmlentities($jeu['Age']) ?></p>
 
                                 <!-- Ajouter le temps de jeu, l'année, le nombre de joueur, l'éditeur -->
@@ -164,11 +174,11 @@
                             <?php if ($stockMessage == "Produit en rupture de stock") {
                                 echo "";
                             } else {
-                                echo "<button type='submit' name='' class='btn btn-primary'> <span>Ajouter au panier </span></button>";
+                                echo "<button type='submit' name='' class='btn btn-secondary'> <span>Ajouter au panier </span></button>";
                             } ?>
-                            <a href="edit.php?id=<?= urlencode($id) ?>"><button class="btn btn-primary">Modifier</button></a>
+                            <a href="edit.php?id=<?= urlencode($id) ?>"><button class="btn btn-secondary">Modifier</button></a>
 
-                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 Supprimer le Jeu
                             </button>
 

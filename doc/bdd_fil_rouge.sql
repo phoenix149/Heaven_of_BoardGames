@@ -100,7 +100,7 @@ CREATE TABLE Jeu(
    jeu_temps VARCHAR(50)  NOT NULL,
    jeu_qte_stc INT NOT NULL,
    jeu_note DECIMAL(2,1)  ,
-   edit_id INT NOT NULL,
+   edit_id INT NOT NULL, é
    pays_id INT NOT NULL,
    ctg_id INT NOT NULL,
    age_id INT NOT NULL,

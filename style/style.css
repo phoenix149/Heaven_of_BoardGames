@@ -113,6 +113,7 @@ main {
 }
 
 #hMonPanierButon {
+  text-decoration: none;
   height: 48%;
   color: #fff173;
   border-color: #fff173;
