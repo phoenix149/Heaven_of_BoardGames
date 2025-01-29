@@ -155,7 +155,7 @@
                                 <p class="card-text"><strong>Auteur(s) : </strong><?= htmlentities($jeu['Auteur']) ?></p>
                                 <p class="card-text"><strong>Age : </strong><?= htmlentities($jeu['Age']) ?></p>
 
-                                <!-- Ajouter le temps de jeu, l'age, le nombre de joueur, l'éditeur -->
+                                <!-- Ajouter le temps de jeu, l'année, le nombre de joueur, l'éditeur -->
                             </div>
                         </article>
                         <article id="basket">
