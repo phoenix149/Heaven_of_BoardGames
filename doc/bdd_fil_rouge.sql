@@ -1,4 +1,4 @@
-create database fil_rouge;
+ -- create database fil_rouge;
 
 use fil_rouge;
 
@@ -90,17 +90,17 @@ CREATE TABLE Editeur(
 
 CREATE TABLE Jeu(
    jeu_id INT auto_increment,
-   jeu_nom VARCHAR(100)  NOT NULL,
+   jeu_nom VARCHAR(50)  NOT NULL,
    jeu_img VARCHAR(500)  NOT NULL,
    jeu_prix DECIMAL(15,2) NOT NULL,
    jeu_EAN VARCHAR(50)  NOT NULL,
    jeu_dte_creation DATE,
    jeu_nb_joueurs VARCHAR(50)  NOT NULL,
-   jeu_description VARCHAR(2500)  NOT NULL,
+   jeu_description VARCHAR(1500)  NOT NULL,
    jeu_temps VARCHAR(50)  NOT NULL,
    jeu_qte_stc INT NOT NULL,
    jeu_note DECIMAL(2,1)  ,
-   edit_id INT NOT NULL,
+   edit_id INT NOT NULL, é
    pays_id INT NOT NULL,
    ctg_id INT NOT NULL,
    age_id INT NOT NULL,

@@ -141,7 +141,7 @@ ob_end_flush();
             </article>
             <article id="hArticlePanierCompte">
                 <a class="btn btn-outline-success" id="hMoncompteButon" href="connexion.php">Mon Compte</a>
-                <button class="btn btn-outline-success" id="hMonPanierButon">Mon Panier</button>
+                <button class="btn btn-outline-success" ><a id="hMonPanierButon" href="basket.php">Mon Panier</a></button>
             </article>
             <aside id="hReseauxTop">
                 <h6 id="titreRS">Nos réseaux</h6>

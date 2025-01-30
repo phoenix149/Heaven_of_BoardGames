@@ -113,6 +113,7 @@ main {
 }
 
 #hMonPanierButon {
+  text-decoration: none;
   height: 48%;
   color: #fff173;
   border-color: #fff173;
@@ -367,13 +368,35 @@ width: 20%;
 }
 
 #mSForms {
-    font-weight: bold;
-    color:#2c1a0c;
-    font-size:larger;
-    display: flex;
-    justify-content:center;
+    /* font-weight: bold; */
+    margin-left: 25%;
+    margin-right: 25%;
 }
 #mArticleLeft {
   width: 98%;
 }
 
+#titleForm {
+  margin-left: 1%;
+  padding-bottom: 30px;
+}
+
+.btn-secondary {
+background-color: #b89f74;
+}
+/* .form-control {
+border-color: #b89f74;
+} */
+
+.form-control:focus {
+  border-color: #b89f74 !important;
+  box-shadow: 0 0 5px #b89f74 !important;
+}
+.form-select:focus {
+  border-color: #b89f74 !important;
+  box-shadow: 0 0 5px #b89f74 !important;
+}
+
+.para {
+  color: red;
+}

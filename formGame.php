@@ -156,7 +156,7 @@ if (isset($_POST['ean'])) {
     if ($modifBDDAuthors == true) {
         $author_ID = $idNewAuthor;
     }
-    
+
     if ($modifBDDMechanism == true) {
         $mechanism_ID = $idNewMechanism;
     }
@@ -222,7 +222,7 @@ if (isset($_POST['ean'])) {
 
     $request3->execute();
 
-    header ('location:./index.php');
+    header('location:./index.php');
 }
 
 ?>

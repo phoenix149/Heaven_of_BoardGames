@@ -7,13 +7,14 @@
         if (isset($_GET['id']) && !empty($_GET['id'])) {
             $id = $_GET['id'];
             // Requête SQL pour récupérer les informations des jeux 
-            $sql = "SELECT j.jeu_id,
+            $sql = "SELECT j.jeu_id as j_id,
         j.jeu_nom AS Nom, 
         j.jeu_img AS Photo, 
         j.jeu_prix,
         jeu_description AS Description, 
         j.jeu_EAN AS EAN, 
         j.jeu_dte_creation, 
+        j.jeu_nb_joueurs,
         j.jeu_temps, 
         j.jeu_qte_stc, 
         j.jeu_note,
@@ -23,8 +24,10 @@
         m.m_nom AS Mecanisme,
         -- tdj_nom AS Theme,
         a_nom AS Auteur,
-        l_nom AS Langue
+        l_nom AS Langue,
+        edit_nom AS Editeur
         FROM Jeu j
+        INNER JOIN Editeur e ON j.edit_id = e.edit_id 
         INNER JOIN Pays p ON j.pays_id = p.pays_id
         INNER JOIN Mecanisme m ON j.m_id = m.m_id
         INNER JOIN Categories c ON j.ctg_id = c.ctg_id
@@ -63,6 +66,7 @@
         jeu_description AS Description, 
         j.jeu_EAN AS EAN, 
         j.jeu_dte_creation, 
+        j.jeu_nb_joueurs,
         j.jeu_temps, 
         j.jeu_qte_stc, 
         j.jeu_note,
@@ -72,8 +76,10 @@
         m.m_nom AS Mecanisme,
         -- tdj_nom AS Theme,
         a_nom AS Auteur,
-        l_nom AS Langue
+        l_nom AS Langue,
+        edit_nom AS Editeur
         FROM Jeu j
+        INNER JOIN Editeur e ON j.edit_id = e.edit_id 
         INNER JOIN Pays p ON j.pays_id = p.pays_id
         INNER JOIN Mecanisme m ON j.m_id = m.m_id
         INNER JOIN Categories c ON j.ctg_id = c.ctg_id
@@ -84,16 +90,15 @@
         INNER JOIN auteurs a ON ja.a_id = a.a_id
         INNER JOIN jeu_langues jl ON j.jeu_id = jl.jeu_id
         INNER JOIN langues l ON jl.l_id = l.l_id
-        WHERE ucase(j.jeu_nom) LIKE ucase('%".$getName."%')";
+        WHERE ucase(j.jeu_nom) LIKE ucase('%" . $getName . "%')";
 
             // Exécution de la requête
             $jeux = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
-            foreach($jeux as $game1) { 
+            foreach ($jeux as $game1) {
 
-            $id = htmlentities($game1['j_id']);
-
-        }
+                $id = htmlentities($game1['j_id']);
+            }
 
             //Requêtes pour récupérer tous les thèmes 
             $themes = $pdo->query("SELECT  tdj_nom FROM jeu_theme jt 
@@ -139,10 +144,16 @@
                                 <p class="card-text"><strong>Catégorie : </strong><?= htmlentities($jeu['Categorie']) ?></p>
                                 <p class="card-text"><strong>Mécanisme : </strong><?= htmlentities($jeu['Mecanisme']) ?></p>
                                 <p class="card-text"><strong>Thèmes(s) : </strong><?= htmlentities($tm) ?></p>
+                                <p class="card-text"><strong>Année : </strong><?= htmlentities($jeu['jeu_dte_creation']) ?></p>
+                                <p class="card-text"><strong>Nombre de joueurs : </strong><?= htmlentities($jeu['jeu_nb_joueurs']) ?></p>
+                                <p class="card-text"><strong>Temps de Jeu : </strong><?= htmlentities($jeu['jeu_temps']) ?></p>
                                 <p class="card-text"><strong>Pays : </strong><?= htmlentities($jeu['Pays']) ?></p>
                                 <p class="card-text"><strong>Langue : </strong><?= htmlentities($jeu['Langue']) ?></p>
                                 <p class="card-text"><strong>Auteur(s) : </strong><?= htmlentities($jeu['Auteur']) ?></p>
+                                <p class="card-text"><strong>Éditeur(s) : </strong><?= htmlentities($jeu['Editeur']) ?></p>
                                 <p class="card-text"><strong>Age : </strong><?= htmlentities($jeu['Age']) ?></p>
+
+                                <!-- Ajouter le temps de jeu, l'année, le nombre de joueur, l'éditeur -->
                             </div>
                         </article>
                         <article id="basket">
@@ -151,21 +162,49 @@
                             <?php if ($stockMessage == "Produit en rupture de stock") {
                                 echo "";
                             } else {
-                                echo "<button type='submit' name='' class='btn btn-primary'> <span>Ajouter au panier </span></button>";
+                                echo "<button type='submit' name='' class='btn btn-secondary'> <span>Ajouter au panier </span></button>";
                             } ?>
-                            <a href="edit.php?id=<?= urlencode($id) ?>"><button class="btn btn-primary">Modifier</button></a>
+                            <a href="edit.php?id=<?= urlencode($id) ?>"><button class="btn btn-secondary">Modifier</button></a>
+
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Supprimer le Jeu
+                            </button>
+
 
                         </article>
                     </section>
-                    
-                </div>
-            </article>
-            <div id="descGame">
-                <h5>Description de l'article </h5>
-                <p class="card-text"> <?= htmlentities($jeu['Description']) ?></p>
+
             </div>
-            <?php endforeach ?>
+        </article>
+        <div id="descGame">
+            <h5>Description de l'article </h5>
+            <p class="card-text"> <?= htmlentities($jeu['Description']) ?></p>
+        </div>
+    <?php endforeach ?>
 
 
+
+    <!-- Modal -->
+     <!-- Affichons une modal pour confirmer la suppression -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Suppression</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Êtes-vous sûr de vouloir supprimer ce Jeu ?
+                </div>
+                <div class="modal-footer">
+                    <a href="deleteGame.php?id=<?= urlencode($id) ?>">
+                        <button type="button" id="delete" class="btn btn-primary">Confirmer</button></a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script/script.js"></script>
     </main>
     <?php include './includes/footer.php' ?>
