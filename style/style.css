@@ -371,6 +371,11 @@ width: 20%;
   object-fit: contain;
 }
 
+#classLeft:hover {
+  border-color: #b89f74 !important;
+  box-shadow: 0 0 5px #b89f74 !important;
+}
+
 .card-text {
   object-fit: contain;
 }
