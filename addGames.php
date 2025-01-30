@@ -49,7 +49,7 @@
                         <p>
                             Merci pour ce nouveau Jeu!
                         </p>
-                        
+
                     </div>
                     <div class="modal-footer">
                         <button id="btnFermer"
@@ -72,85 +72,85 @@
             <form id="form1" action="./formGame.php" method="post" enctype="multipart/form-data">
                 <div>
                     <label for="ean">EAN :</label>
-                    <input class="form-control" type="text" id="ean" name="ean" >
+                    <input class="form-control" type="text" id="ean" name="ean">
                     <p class="para" id="paraEAN"></p>
                 </div>
                 <br>
                 <div>
-                <label for="gameName">Nom du Jeu :</label>
-                <input type="text" name="gameName" id="gameName"  class="form-control">
+                    <label for="gameName">Nom du Jeu :</label>
+                    <input type="text" name="gameName" id="gameName" class="form-control">
                     <p class="para" id="paraGameName"></p>
                 </div>
                 <br>
                 <div>
-                <label for="noteGame">Note du Jeu sur BGG :</label>
-                <input type="text" name="noteGame" id="noteGame" maxlength="4" placeholder="1 à 10 exemple : 6.5" class="form-control">
+                    <label for="noteGame">Note du Jeu sur BGG :</label>
+                    <input type="text" name="noteGame" id="noteGame" maxlength="4" placeholder="1 à 10 exemple : 6.5" class="form-control">
                     <p class="para" id="paraNoteGame"></p>
                 </div>
                 <br>
                 <div>
-                <label for="gameTheme">Thème du Jeu :</label>
-                <select name="gameTheme" id="selectorGameTheme" class="form-select">
-                <option value="" hidden></option>
-                <option value="Add" >Ajouter un Thème de Jeu</option>
-                <option value=" " disabled></option>
-                <?php foreach ($ThemesGames as $ThemeGame): ?>
-                        <option value="<?= $ThemeGame['tdj_id'] ?>">
-                            <?= htmlentities($ThemeGame['tdj_nom']) ?>
+                    <label for="gameTheme">Thème du Jeu :</label>
+                    <select name="gameTheme" id="selectorGameTheme" class="form-select">
+                        <option value="" hidden></option>
+                        <option value="Add">Ajouter un Thème de Jeu</option>
+                        <option value=" " disabled></option>
+                        <?php foreach ($ThemesGames as $ThemeGame): ?>
+                            <option value="<?= $ThemeGame['tdj_id'] ?>">
+                                <?= htmlentities($ThemeGame['tdj_nom']) ?>
                             </option>
                         <?php endforeach; ?>
-                </select>
-                <label for="addGameTheme" class="form-label" id="addGameThemeLabel">Ajouter un Thème :</label>
-                <input type="text" name="addGameTheme" id="addGameThemeChamp" class="form-control">
+                    </select>
+                    <label for="addGameTheme" class="form-label" id="addGameThemeLabel">Ajouter un Thème :</label>
+                    <input type="text" name="addGameTheme" id="addGameThemeChamp" class="form-control">
                     <p class=" para" id="paraGametheme"></p>
                 </div>
                 <br>
                 <div>
-                <label for="descGame">Description :</label>
-                <textarea name="descGame" id="descGame" class="form-control"></textarea>
+                    <label for="descGame">Description :</label>
+                    <textarea name="descGame" id="descGame" class="form-control"></textarea>
                     <p class="para" id="paraDesc"></p>
                 </div>
                 <br>
                 <div>
-                <label for="gamePrice">Prix du Jeu :</label>
-                <input type="text" name="gamePrice" id="gamePrice"  class="form-control">
+                    <label for="gamePrice">Prix du Jeu :</label>
+                    <input type="text" name="gamePrice" id="gamePrice" class="form-control">
                     <p class="para" id="paraGamePrice"></p>
                 </div>
                 <br>
                 <div>
-                <label for="gameTime">Temps de Jeu :</label>
-                <input type="text" name="gameTime" id="gameTime" class="form-control">
+                    <label for="gameTime">Temps de Jeu :</label>
+                    <input type="text" name="gameTime" id="gameTime" class="form-control">
                     <p class="para" id="paraGameTime"></p>
                 </div>
                 <br>
                 <div>
-                <label for="middleAge">Age moyen :</label>
-                <select name="middleAge" id="middleAge" class="form-select">
-                <option value="" hidden></option>
-                <?php foreach ($ageMiddle as $ageMiddleU): ?>
-                        <option value="<?= $ageMiddleU['age_id'] ?>">
-                            <?= htmlentities($ageMiddleU['age_nom']) ?>
+                    <label for="middleAge">Age moyen :</label>
+                    <select name="middleAge" id="middleAge" class="form-select">
+                        <option value="" hidden></option>
+                        <?php foreach ($ageMiddle as $ageMiddleU): ?>
+                            <option value="<?= $ageMiddleU['age_id'] ?>">
+                                <?= htmlentities($ageMiddleU['age_nom']) ?>
                             </option>
                         <?php endforeach; ?>
-                </select>
+                    </select>
                     <p class="para" id="paraAge"></p>
                 </div>
                 <br>
                 <div>
-                <label for="nbPlayer">Nombre de Joueurs :</label>
-                <input type="text" placeholder="exemple : 2 à 5" id="nbPlayer" name="nbPlayer" class="form-control">
+                    <label for="nbPlayer">Nombre de Joueurs :</label>
+                    <input type="text" placeholder="exemple : 2 à 5" id="nbPlayer" name="nbPlayer" class="form-control">
                     <p class="para" id="paraPlayer"></p>
                 </div>
                 <br>
                 <div>
-                <label for="author">Auteur :</label>
-                <select name="author" id="author" class="form-select">
-                <option value="" hidden></option>
-                <option value="Add" >Ajouter un Auteur</option>
-                <option value=" " disabled></option>
-                <?php foreach ($authors as $author): ?>
-                        <option value="<?= $author['a_id'] ?>">
-                            <?= htmlentities($author['a_nom']) ?>
+                    <label for="author">Auteur :</label>
+                    <select name="author" id="author" class="form-select">
+                        <option value="" hidden></option>
+                        <option value="Add">Ajouter un Auteur</option>
+                        <option value=" " disabled></option>
+                        <?php foreach ($authors as $author): ?>
+                            <option value="<?= $author['a_id'] ?>">
+                                <?= htmlentities($author['a_nom']) ?>
                             </option>
                         <?php endforeach; ?>
                     </select>
@@ -160,14 +160,14 @@
                 </div>
                 <br>
                 <div>
-                <label for="editor">Éditeur :</label>
-                <select name="editor" id="selectorEditor" class="form-select">
-                <option value="" hidden></option>
-                <option value="Add" >Ajouter un Éditeur</option>
-                <option value=" " disabled></option>
-                <?php foreach ($editorsGames as $editorGame): ?>
-                        <option value="<?= $editorGame['edit_id'] ?>">
-                            <?= htmlentities($editorGame['edit_nom']) ?>
+                    <label for="editor">Éditeur :</label>
+                    <select name="editor" id="selectorEditor" class="form-select">
+                        <option value="" hidden></option>
+                        <option value="Add">Ajouter un Éditeur</option>
+                        <option value=" " disabled></option>
+                        <?php foreach ($editorsGames as $editorGame): ?>
+                            <option value="<?= $editorGame['edit_id'] ?>">
+                                <?= htmlentities($editorGame['edit_nom']) ?>
                             </option>
                         <?php endforeach; ?>
                     </select>
@@ -177,94 +177,94 @@
                 </div>
                 <br>
                 <div>
-                <label for="createDate">Année de sortie :</label>
-                <input type="text" id="createDate" name="createDate" maxlength="4" class="form-control">
+                    <label for="createDate">Année de sortie :</label>
+                    <input type="text" id="createDate" name="createDate" maxlength="4" class="form-control">
                     <p class="para" id="paraDate"></p>
                 </div>
                 <br>
                 <div>
-                <label for="country">Pays d'Origine :</label>
-                <select name="country" id="country" class="form-select">
-                <option value="" hidden></option>
-                <option value="Add" >Ajouter un Pays d'origine</option>
-                <option value=" " disabled></option>
-                <?php foreach ($countryReq as $countryU): ?>
-                        <option value="<?= $countryU['pays_id'] ?>">
-                            <?= htmlentities($countryU['pays_nom']) ?>
+                    <label for="country">Pays d'Origine :</label>
+                    <select name="country" id="country" class="form-select">
+                        <option value="" hidden></option>
+                        <option value="Add">Ajouter un Pays d'origine</option>
+                        <option value=" " disabled></option>
+                        <?php foreach ($countryReq as $countryU): ?>
+                            <option value="<?= $countryU['pays_id'] ?>">
+                                <?= htmlentities($countryU['pays_nom']) ?>
                             </option>
                         <?php endforeach; ?>
-                </select>
-                <label for="addCountry" id="addCountryLabel">Ajouter un Pays d'origine :</label>
+                    </select>
+                    <label for="addCountry" id="addCountryLabel">Ajouter un Pays d'origine :</label>
                     <input type="text" name="addCountry" id="addCountryChamp" class="form-control">
                     <p class="para" id="paraCountry"></p>
                 </div>
                 <br>
                 <div>
-                <label for="languagesGame">Langue du Jeu :</label>
-                <select name="languagesGame" id="languagesGame" class="form-select">
-                <option value="" hidden></option>
-                <?php foreach ($languageGames as $languageGame): ?>
-                        <option value="<?= $languageGame['l_id'] ?>">
-                            <?= htmlentities($languageGame['l_nom']) ?>
+                    <label for="languagesGame">Langue du Jeu :</label>
+                    <select name="languagesGame" id="languagesGame" class="form-select">
+                        <option value="" hidden></option>
+                        <?php foreach ($languageGames as $languageGame): ?>
+                            <option value="<?= $languageGame['l_id'] ?>">
+                                <?= htmlentities($languageGame['l_nom']) ?>
                             </option>
                         <?php endforeach; ?>
-                </select>
+                    </select>
                     <p class="para" id="paraLanguage"></p>
                 </div>
                 <br>
                 <div>
-                <label for="category">Catégorie :</label>
-                <select name="category" id="category" class="form-select">
-                <option value="" hidden></option>
-                <option value="Add" >Ajouter une Catégorie</option>
-                <option value=" " disabled></option>
-                    <?php foreach ($categoriesReq as $categorie): ?>
-                        <option value="<?= $categorie['ctg_id'] ?>">
-                            <?= htmlentities($categorie['ctg_nom']) ?>
+                    <label for="category">Catégorie :</label>
+                    <select name="category" id="category" class="form-select">
+                        <option value="" hidden></option>
+                        <option value="Add">Ajouter une Catégorie</option>
+                        <option value=" " disabled></option>
+                        <?php foreach ($categoriesReq as $categorie): ?>
+                            <option value="<?= $categorie['ctg_id'] ?>">
+                                <?= htmlentities($categorie['ctg_nom']) ?>
                             </option>
                         <?php endforeach; ?>
-                </select>
-                <label for="addCategory" id="addCategoryLabel">Ajouter une Catégorie :</label>
-                <input type="text" name="addCategory" class="form-control" id="addCategoryChamp">
+                    </select>
+                    <label for="addCategory" id="addCategoryLabel">Ajouter une Catégorie :</label>
+                    <input type="text" name="addCategory" class="form-control" id="addCategoryChamp">
                     <p class="para" id="paraCategory"></p>
                 </div>
                 <br>
                 <div>
-                <label for="mechanism">Mécanisme de Jeu :</label>
-                <select name="mechanism" id="mechanism" class="form-select">
-                <option value="" hidden></option>
-                <option value="Add" >Ajouter un Mécanisme de Jeu</option>
-                <option value=" " disabled></option>
-                <?php foreach ($mechanismReq as $mechanismU): ?>
-                        <option value="<?= $mechanismU['m_id'] ?>">
-                            <?= htmlentities($mechanismU['m_nom']) ?>
+                    <label for="mechanism">Mécanisme de Jeu :</label>
+                    <select name="mechanism" id="mechanism" class="form-select">
+                        <option value="" hidden></option>
+                        <option value="Add">Ajouter un Mécanisme de Jeu</option>
+                        <option value=" " disabled></option>
+                        <?php foreach ($mechanismReq as $mechanismU): ?>
+                            <option value="<?= $mechanismU['m_id'] ?>">
+                                <?= htmlentities($mechanismU['m_nom']) ?>
                             </option>
                         <?php endforeach; ?>
-                </select>
-                <label for="addMechanism" id="addMechanismLabel">Ajouter un Méchanisme :</label>
+                    </select>
+                    <label for="addMechanism" id="addMechanismLabel">Ajouter un Méchanisme :</label>
                     <input type="text" name="addMechanism" id="addMechanismChamp" class="form-control">
                     <p class="para" id="paraMechanism"></p>
                 </div>
                 <br>
                 <div>
-                <label for="stockGame">Quantité en stock :</label>
-                <input type="number" id="stockGame" name="stockGame" class="form-control">
+                    <label for="stockGame">Quantité en stock :</label>
+                    <input type="number" id="stockGame" name="stockGame" class="form-control">
                     <p class="para" id="paraStock"></p>
                 </div>
                 <br>
                 <div>
-                <label for="file" class="form-label">Charger une image :</label>
-                <input type="file" id="file" name="file" class="form-control">
+                    <label for="file" class="form-label">Charger une image :</label>
+                    <input type="file" id="file" name="file" class="form-control">
                     <p class="para" id="paraFile"></p>
                 </div>
                 <br>
                 <div>
-                <article class="col-2 row justify-content-center">
-                    <input class="form-control" type="submit" value="Enregistrer">
-                </article>
-                <article class="col-2 row justify-content-center">
-                    <input class="form-control" type="reset" value="Annuler">
-                </article>
+                    <article class="col-2 row justify-content-center">
+                        <input class="form-control" type="submit" value="Enregistrer">
+                    </article>
+                    <article class="col-2 row justify-content-center">
+                        <input class="form-control" type="reset" value="Annuler">
+                    </article>
                 </div>
                 <br>
             </form>
@@ -272,7 +272,6 @@
     </main>
     <?php include './includes/footer.php' ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="./script/script.js"></script>
 </body>
 
 </html>
