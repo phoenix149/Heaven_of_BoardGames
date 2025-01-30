@@ -69,6 +69,7 @@ main {
     width: 98%;
     max-height: 100%;
     min-height: 950px;
+    padding-bottom: 50px;
 }
 
 #hArticleSearchbar {
@@ -361,12 +362,31 @@ width: 20%;
 
 
 #classLeft {
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 70%;
+  height: 100%;
+  object-fit: contain;
 }
 
+#classLeft:hover {
+  border-color: #b89f74 !important;
+  box-shadow: 0 0 5px #b89f74 !important;
+}
+
+.card-text {
+  object-fit: contain;
+}
+.card-body {
+  object-fit: contain;
+}
+
+.card-img-top {
+  object-fit: contain;
+}
 #mSForms {
     /* font-weight: bold; */
     margin-left: 25%;
@@ -397,6 +417,13 @@ border-color: #b89f74;
   box-shadow: 0 0 5px #b89f74 !important;
 }
 
+<<<<<<< HEAD
 .para {
   color: red;
+=======
+#i_imgContainer {
+  width: 70%;
+  height: auto;
+  object-fit: contain;
+>>>>>>> origin/Antho5
 }
