@@ -1,6 +1,16 @@
+<!DOCTYPE html>
+<html lang="fr">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un jeu!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style/style.css">
 
+</head>
 
+<body>
     <?php include './includes/header.php' ?>
     <main>
         <?php
@@ -84,10 +94,6 @@
                 <option value="" hidden></option>
                 <option value="Add" >Ajouter un Thème de Jeu</option>
                 <option value=" " disabled></option>
-                <select name="gameTheme" id="selectorGameTheme" class="form-select">
-                <option value="" hidden></option>
-                <option value="Add" >Ajouter un Thème de Jeu</option>
-                <option value=" " disabled></option>
                 <?php foreach ($ThemesGames as $ThemeGame): ?>
                         <option value="<?= $ThemeGame['tdj_id'] ?>">
                             <?= htmlentities($ThemeGame['tdj_nom']) ?>
@@ -139,10 +145,7 @@
                 <div>
                 <label for="author">Auteur :</label>
                 <select name="author" id="author" class="form-select">
-                <select name="author" id="author" class="form-select">
                 <option value="" hidden></option>
-                <option value="Add" >Ajouter un Auteur</option>
-                <option value=" " disabled></option>
                 <option value="Add" >Ajouter un Auteur</option>
                 <option value=" " disabled></option>
                 <?php foreach ($authors as $author): ?>
@@ -159,10 +162,7 @@
                 <div>
                 <label for="editor">Éditeur :</label>
                 <select name="editor" id="selectorEditor" class="form-select">
-                <select name="editor" id="selectorEditor" class="form-select">
                 <option value="" hidden></option>
-                <option value="Add" >Ajouter un Éditeur</option>
-                <option value=" " disabled></option>
                 <option value="Add" >Ajouter un Éditeur</option>
                 <option value=" " disabled></option>
                 <?php foreach ($editorsGames as $editorGame): ?>
@@ -186,8 +186,6 @@
                 <label for="country">Pays d'Origine :</label>
                 <select name="country" id="country" class="form-select">
                 <option value="" hidden></option>
-                <option value="Add" >Ajouter un Pays d'origine</option>
-                <option value=" " disabled></option>
                 <option value="Add" >Ajouter un Pays d'origine</option>
                 <option value=" " disabled></option>
                 <?php foreach ($countryReq as $countryU): ?>
@@ -217,10 +215,7 @@
                 <div>
                 <label for="category">Catégorie :</label>
                 <select name="category" id="category" class="form-select">
-                <select name="category" id="category" class="form-select">
                 <option value="" hidden></option>
-                <option value="Add" >Ajouter une Catégorie</option>
-                <option value=" " disabled></option>
                 <option value="Add" >Ajouter une Catégorie</option>
                 <option value=" " disabled></option>
                     <?php foreach ($categoriesReq as $categorie): ?>
@@ -237,10 +232,7 @@
                 <div>
                 <label for="mechanism">Mécanisme de Jeu :</label>
                 <select name="mechanism" id="mechanism" class="form-select">
-                <select name="mechanism" id="mechanism" class="form-select">
                 <option value="" hidden></option>
-                <option value="Add" >Ajouter un Mécanisme de Jeu</option>
-                <option value=" " disabled></option>
                 <option value="Add" >Ajouter un Mécanisme de Jeu</option>
                 <option value=" " disabled></option>
                 <?php foreach ($mechanismReq as $mechanismU): ?>
@@ -279,7 +271,8 @@
         </section>
     </main>
     <?php include './includes/footer.php' ?>
-   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="./script/script.js"></script>
 </body>
 
 </html>

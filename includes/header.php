@@ -22,7 +22,7 @@ try {
 $username = null;
 if (isset($_SESSION['user_id'])) {
     $userId = $_SESSION['user_id'];
-    echo "User ID: $userId"; 
+    // echo "User ID: $userId"; 
 
     $sqlUser = "SELECT u_pseudo FROM utilisateurs WHERE tu_id = :user_id";
     $stmtUser = $pdo->prepare($sqlUser);
