@@ -1,6 +1,6 @@
 //Récupérons les Ids des éléments HTML du formulaire addGames
 
-let formAdd = document.getElementById("form1");
+let formAdd = document.getElementById("mSForms");
 let EAN = document.getElementById("ean");
 let gameName = document.getElementById("gameName");
 let noteGame = document.getElementById("noteGame");
@@ -55,6 +55,7 @@ let paraStock = document.getElementById("paraStock");
 let paraFile = document.getElementById("paraFile");
 
 // Cache les champs d'ajout à l'affichage de la page
+console.log("Lancement du script");
 AddAuthorschamp.style.display = "none";
 addAuthorLabel.style.display = "none";
 addEditorLabel.style.display = "none";
