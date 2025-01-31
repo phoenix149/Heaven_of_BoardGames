@@ -34,6 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $usert = $stmt->fetch(PDO::FETCH_ASSOC);
         $_SESSION['user_type'] = $usert['tu_libelle'];
         $_SESSION['logged_in'] = true;
+
+     
+
         header('Location: index.php'); // Redirection vers la page d'accueil
         exit();
     } else {
