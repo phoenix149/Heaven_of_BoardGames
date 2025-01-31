@@ -162,7 +162,8 @@
                             <?php if ($stockMessage == "Produit en rupture de stock") {
                                 echo "";
                             } else {
-                                echo "<button type='submit' name='' class='btn btn-secondary'> <span>Ajouter au panier </span></button>";
+                                //Ajout de la fonction addToCart en passant en paramètre le nom du jeu et son prix
+                                echo "<button onclick ='addToCart(\"" . $jeu['Nom'] ."\", \"" . $jeu['jeu_prix'] ."\")' type='submit' name='' class='btn btn-secondary'> <span>Ajouter au panier </span></button>";
                             } ?>
                             <a href="edit.php?id=<?= urlencode($id) ?>"><button class="btn btn-secondary">Modifier</button></a>
 

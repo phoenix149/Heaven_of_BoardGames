@@ -41,9 +41,9 @@
         $stmt3->execute() &&
         $stmt4->execute()
     ) {
-        echo "Le Jeu a été supprimé avec succès";
+        // echo "Le Jeu a été supprimé avec succès";
     } else {
-        echo "Échec de la suppréssion";
+        // echo "Échec de la suppression";
     }
     // }
     //Redirection vers la page d'accueil

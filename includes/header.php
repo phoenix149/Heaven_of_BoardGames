@@ -53,7 +53,7 @@ $isCommercialOrAdmin = isset($_SESSION['user_type']) && in_array($_SESSION['user
 
 <body>
 
-<nav class="navbar navbar-expand-lg 
+    <nav class="navbar navbar-expand-lg 
     <?php
     if (isset($_SESSION['user_type'])) {
         switch ($_SESSION['user_type']) {
@@ -72,98 +72,104 @@ $isCommercialOrAdmin = isset($_SESSION['user_type']) && in_array($_SESSION['user
         echo 'bg-body-tertiary'; // Couleur par défaut si non connecté
     }
     ?>">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="index.php">Heaven of BoardGames</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-                </li>
-                <?php if ($isCommercialOrAdmin): ?>
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.php">Heaven of BoardGames</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="addGames.php">Ajouter un produit</a>
+                        <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Categories
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="games.php">Toutes les catégories</a></li>
-                            <li><a class="dropdown-item" href="Categorie.php">Ajouter une catégorie</a></li>
-                        </ul>
-                    </li>
-                <?php endif; ?>
-            </ul>
-            <div class="d-flex">
-                <?php if ($username): ?>
-                    <span class="navbar-text me-3">Bienvenue, <?= htmlentities($username) ?>!</span>
-                    <a href="deconnexion.php" class="btn btn-danger">Se déconnecter</a>
-                <?php else: ?>
-                    <a href="connexion.php" class="btn btn-outline-primary me-2">Login</a>
-                    <a href="inscription.php" class="btn btn-primary">Register</a>
-                <?php endif; ?>
+                    <?php if ($isCommercialOrAdmin): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="addGames.php">Ajouter un produit</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Categories
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="games.php">Toutes les catégories</a></li>
+                                <li><a class="dropdown-item" href="Categorie.php">Ajouter une catégorie</a></li>
+                            </ul>
+                        </li>
+                    <?php endif; ?>
+                </ul>
+                <div class="d-flex">
+                    <?php if ($username): ?>
+                        <span class="navbar-text me-3">Bienvenue, <?= htmlentities($username) ?>!</span>
+                        <a href="deconnexion.php" class="btn btn-danger">Se déconnecter</a>
+                    <?php else: ?>
+                        <a href="connexion.php" class="btn btn-outline-primary me-2">Login</a>
+                        <a href="inscription.php" class="btn btn-primary">Register</a>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
 
-<header>
-    <section id="hSectionSessionNav">
- 
-    </section>
-    <section id="hSectionTop">
-        <aside id="hAsideLogo">
-            <a href="index.php"><img src="images/logo.png" alt="" id="hLogo"></a>
-        </aside>
-        <article id="hArticleSearchbar">
+    <header>
+        <section id="hSectionSessionNav">
 
-            <h1 id="logoTitre">Heaven of BoardGames</h1>
+        </section>
+        <section id="hSectionTop">
+            <aside id="hAsideLogo">
+                <a href="index.php"><img src="images/logo.png" alt="" id="hLogo"></a>
+            </aside>
+            <article id="hArticleSearchbar">
 
-            <form class="d-flex" role="search" id="hSearch" method="get" action="games.php">
-                <input class="form-control me-2" type="search" id="hChampSearch" placeholder="Rechercher un jeu..." aria-label="Search" name="search">
-                <button class="btn btn-outline-success" id="hSearchButon" type="submit">Rechercher</button>
-            </form>
+                <h1 id="logoTitre">Heaven of BoardGames</h1>
 
-        </article>
-        <article id="hArticlePanierCompte">
-            <a class="btn btn-outline-success" id="hMoncompteButon" href="connexion.php">Mon Compte</a>
-            <button class="btn btn-outline-success" id="hMonPanierButon">Mon Panier</button>
-        </article>
-        <aside id="hReseauxTop">
-            <h6 id="titreRS">Nos réseaux</h6>
-            <a href="#"><img src="images/instagram.png" class="hRSLogo" alt="InstagramLogo"></a>
-            <a href="#"><img src="images/facebook.png" class="hRSLogo" alt="FacebookLogo"></a>
-            <a href="#"><img src="images/youtube.png" class="hRSLogo" alt="YoutubeLogo"></a>
-            <a href="#"><img src="images/tic-tac (1).png" class="hRSLogo" alt="Tik-TokLogo"></a>
-            <a href="#"><img src="images/tic.png" class="hRSLogo" alt="TwitchLogo"></a>
-        </aside>
-    </section>
-    <section id="hSectionNavBar">
-        <nav id="hNavbar">
-            <a href="#">
-                <h3 class="hLiensNav">Jeux D'ambiances</h3>
-            </a>
-            <h3 class="hPipe">|</h3>
-            <a href="jeux_enfants.php">
-                <h3 class="hLiensNav">Jeux Enfants</h3>
-            </a>
-            <h3 class="hPipe">|</h3>
-            <a href="#">
-                <h3 class="hLiensNav">Jeux Familiaux</h3>
-            </a>
-            <h3 class="hPipe">|</h3>
-            <a href="#">
-                <h3 class="hLiensNav">Jeux Initiés</h3>
-            </a>
-            <h3 class="hPipe">|</h3>
-            <a href="#">
-                <h3 class="hLiensNav">Jeux Experts</h3>
-            </a>
-        </nav>
-    </section>
-    <a href="#hSectionTop"><button id="buttonTop" class="fixed-bottom">↑</button></a>
-</header>
+                <form class="d-flex" role="search" id="hSearch" method="get" action="games.php">
+                    <input class="form-control me-2" type="search" id="hChampSearch" placeholder="Rechercher un jeu..." aria-label="Search" name="search">
+                    <button class="btn btn-outline-success" id="hSearchButon" type="submit">Rechercher</button>
+                </form>
+
+            </article>
+            <article id="hArticlePanierCompte">
+                <a class="btn btn-outline-success" id="hMoncompteButon" href="connexion.php">Mon Compte</a>
+                <a href="basket.php" class="btn btn-outline-success" onclick="showCart()" id="hMonPanierButon">Mon Panier</a>
+            </article>
+            <aside id="hReseauxTop">
+                <h6 id="titreRS">Nos réseaux</h6>
+                <a href="#"><img src="images/instagram.png" class="hRSLogo" alt="InstagramLogo"></a>
+                <a href="#"><img src="images/facebook.png" class="hRSLogo" alt="FacebookLogo"></a>
+                <a href="#"><img src="images/youtube.png" class="hRSLogo" alt="YoutubeLogo"></a>
+                <a href="#"><img src="images/tic-tac (1).png" class="hRSLogo" alt="Tik-TokLogo"></a>
+                <a href="#"><img src="images/tic.png" class="hRSLogo" alt="TwitchLogo"></a>
+            </aside>
+        </section>
+        <section id="hSectionNavBar">
+            <nav id="hNavbar">
+                <a href="#">
+                    <h3 class="hLiensNav">Jeux D'ambiances</h3>
+                </a>
+                <h3 class="hPipe">|</h3>
+                <a href="jeux_enfants.php">
+                    <h3 class="hLiensNav">Jeux Enfants</h3>
+                </a>
+                <h3 class="hPipe">|</h3>
+                <a href="#">
+                    <h3 class="hLiensNav">Jeux Familiaux</h3>
+                </a>
+                <h3 class="hPipe">|</h3>
+                <a href="#">
+                    <h3 class="hLiensNav">Jeux Initiés</h3>
+                </a>
+                <h3 class="hPipe">|</h3>
+                <a href="#">
+                    <h3 class="hLiensNav">Jeux Experts</h3>
+                </a>
+            </nav>
+        </section>
+        <a href="#hSectionTop"><button id="buttonTop" class="fixed-bottom">↑</button></a>
+    </header>
+
+    <body>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="../script/script.js"></script>
+    </body>
