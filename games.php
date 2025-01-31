@@ -166,7 +166,7 @@
                     <article id="basket">
                         <p class="card-text" id="stockMessage"><?= htmlentities($stockMessage) ?></p>
                         <p class="card-text" id="price">Prix TTC : <?= $jeu['jeu_prix'] ?>€</p>
-
+                       <!--Modification des l'affichage des boutons en fontion du status de connection-->
                         <?php if ($stockMessage !== "Produit en rupture de stock"): ?>
                             <?php if ($status === 'Client'): ?>
                                 <button type="submit" class="btn btn-secondary">

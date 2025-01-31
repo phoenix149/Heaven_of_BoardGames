@@ -1,6 +1,7 @@
 <?php
 // Démarrer la session
 session_start();
+//Modification des l'affichage des boutons en fontion du status de connection 
 $status = $_SESSION['user_type'] ?? 'Client'; // Par défaut, "client" si non connecté
 
 
