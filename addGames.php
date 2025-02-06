@@ -247,7 +247,7 @@
                 </div>
 
                 <div>
-                    <input type="submit"  id="save" value="Enregistrer" class="btn btn-secondary" >
+                    <input type="button"  id="save" value="Enregistrer" class="btn btn-secondary" >
                     <input type="reset" value="Annuler" class="btn btn-secondary">
                 </div>
 

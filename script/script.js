@@ -31,6 +31,7 @@ let addMechanismLabel = document.getElementById("addMechanismLabel");
 let addMechanismChamp = document.getElementById("addMechanismChamp");
 let stockGame = document.getElementById("stockGame");
 let file = document.getElementById("file");
+let saveButton = document.getElementById("save");
 // let modal = new bootstrap.Modal(document.getElementById("exampleModal"));
 
 //Récupérons les paragraphe où on voudra afficher nos textes d'erreur
@@ -73,8 +74,8 @@ addCountryChamp.style.display = "none";
 //Déclarons une variable qui permettra d'afficher la modal
 let isValid = true;
 
-formAdd.addEventListener("submit", (event) => {
-  event.preventDefault();
+saveButton.addEventListener("click", () => {
+  // event.preventDefault();
 
   //Posons une condition pour vérifier si l'EAN est renseigné
   console.log(EAN.value);
@@ -214,26 +215,13 @@ formAdd.addEventListener("submit", (event) => {
   }
 
   //Si toutes les conditions sont vérifiées on affiche la modal
-  // if (isValid) {
-  //   modal.show();
-  //   console.log("jeu ajouté");
-
-  // }
-});
-
-// function show(){
-//   modal.style.display = "block";
-
-// }
-
-//On submit le formulaire dès que la modal est fermée
-document.getElementById("save").addEventListener("click", function () {
   if (isValid = true) {
     formAdd.submit();
   }
 });
 
-// écouteur d'évenement change sur le select Auteur qui déclenche la fonction afficheChamp
+
+// Ecouteur d'évenement change sur le select Auteur qui déclenche la fonction afficheChamp
 AddAuthorOption.addEventListener("change", function () {
   afficheChamp(AddAuthorschamp, addAuthorLabel, AddAuthorOption.value);
   console.log("j'ai effectué l'ecouteur d'évenement sur le sélecteur auteur");
