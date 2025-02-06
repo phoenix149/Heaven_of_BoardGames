@@ -1,6 +1,9 @@
 <?php
 // Démarrer la session
 session_start();
+//Modification des l'affichage des boutons en fontion du status de connection 
+$status = $_SESSION['user_type'] ?? 'Client'; // Par défaut, "client" si non connecté
+
 
 // Configuration de la base de données
 $host = "127.0.0.1"; // Ou "localhost"
@@ -15,6 +18,9 @@ try {
 } catch (PDOException $e) {
     die("Erreur de connexion : " . $e->getMessage());
 }
+
+
+
 
 // Vérifier si l'utilisateur est connecté
 $username = null;
