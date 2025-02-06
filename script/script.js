@@ -31,7 +31,7 @@ let addMechanismLabel = document.getElementById("addMechanismLabel");
 let addMechanismChamp = document.getElementById("addMechanismChamp");
 let stockGame = document.getElementById("stockGame");
 let file = document.getElementById("file");
-let modal = document.getElementById("exampleModal");
+// let modal = new bootstrap.Modal(document.getElementById("exampleModal"));
 
 //Récupérons les paragraphe où on voudra afficher nos textes d'erreur
 
@@ -70,15 +70,15 @@ addCountryLabel.style.display = "none";
 addCountryChamp.style.display = "none";
 
 //Ajoutons un événement pour empecher l'envoi du formulaire
+//Déclarons une variable qui permettra d'afficher la modal
+let isValid = true;
+
 formAdd.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  //Déclarons une variable qui permettra d'afficher la modal
-  let isValid = true;
-
   //Posons une condition pour vérifier si l'EAN est renseigné
   console.log(EAN.value);
-  
+
   if (EAN.value == "") {
     paraEAN.innerText = "Veuillez renseigner l'EAN du Jeu!";
     isValid = false;
@@ -214,21 +214,23 @@ formAdd.addEventListener("submit", (event) => {
   }
 
   //Si toutes les conditions sont vérifiées on affiche la modal
-  if (isValid) {
-    modal.show();
-    console.log("jeu ajouté");
-    
-  }
+  // if (isValid) {
+  //   modal.show();
+  //   console.log("jeu ajouté");
+
+  // }
 });
 
-function show(){
-  modal.style.display = "block";
-  
-}
+// function show(){
+//   modal.style.display = "block";
+
+// }
 
 //On submit le formulaire dès que la modal est fermée
-document.getElementById("btnFermer").addEventListener("click", function () {
-  formAdd.submit();
+document.getElementById("save").addEventListener("click", function () {
+  if (isValid = true) {
+    formAdd.submit();
+  }
 });
 
 // écouteur d'évenement change sur le select Auteur qui déclenche la fonction afficheChamp

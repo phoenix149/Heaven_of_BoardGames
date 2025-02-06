@@ -1,32 +1,14 @@
 <?php
 // Démarrer la session
+ob_start();
 session_start();
+include 'connectDB.php';
 //Modification des l'affichage des boutons en fontion du status de connection 
-$status = $_SESSION['user_type'] ?? 'Client'; // Par défaut, "client" si non connecté
-
-
-// Configuration de la base de données
-$host = "127.0.0.1"; // Ou "localhost"
-$dbname = 'fil_rouge';
-$username = 'root';
-$password = '';
-
-try {
-    // Connexion à la base de données
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Erreur de connexion : " . $e->getMessage());
-}
-
-
-
-
+$status = $_SESSION['user_type'] ?? 'Non enregistré'; // Par défaut, "Non enregistré" si non connecté
 // Vérifier si l'utilisateur est connecté
 $username = null;
 if (isset($_SESSION['user_id'])) {
     $userId = $_SESSION['user_id'];
-
     // Récupération des informations de l'utilisateur
     $sqlUser = "SELECT u_pseudo, tu_libelle FROM utilisateurs u 
                 JOIN type_utilisateur t ON u.tu_id = t.tu_id
@@ -34,16 +16,14 @@ if (isset($_SESSION['user_id'])) {
     $stmtUser = $pdo->prepare($sqlUser);
     $stmtUser->execute(['userId' => $userId]);
     $user = $stmtUser->fetch(PDO::FETCH_ASSOC);
-
     if ($user) {
         $username = $user['u_pseudo'];  // Correction de l'accès à la colonne
         $_SESSION['user_type'] = $user['tu_libelle'];  // Stocker le type utilisateur
     }
 }
-
 // Vérifier si l'utilisateur est Commercial ou Admin
 $isCommercialOrAdmin = isset($_SESSION['user_type']) && in_array($_SESSION['user_type'], ['Commercial', 'Admin']);
-
+ob_end_flush();
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +32,8 @@ $isCommercialOrAdmin = isset($_SESSION['user_type']) && in_array($_SESSION['user
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">    <link rel="stylesheet" href="../style/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="../style/style.css">
     <title>Heaven Of BoardGames</title>
 </head>
 
@@ -102,15 +83,15 @@ $isCommercialOrAdmin = isset($_SESSION['user_type']) && in_array($_SESSION['user
                         </li>
                     <?php endif; ?>
                 </ul>
-                <div class="d-flex">
-                    <?php if ($username): ?>
-                        <span class="navbar-text me-3">Bienvenue, <?= htmlentities($username) ?>!</span>
-                        <a href="deconnexion.php" class="btn btn-danger">Se déconnecter</a>
-                    <?php else: ?>
-                        <a href="connexion.php" class="btn btn-outline-primary me-2">Login</a>
-                        <a href="inscription.php" class="btn btn-primary">Register</a>
-                    <?php endif; ?>
-                </div>
+            </div>
+            <div class="d-flex">
+                <?php if ($username): ?>
+                    <span class="navbar-text me-3">Bienvenue, <?= htmlentities($username) ?>!</span>
+                    <a href="deconnexion.php" class="btn btn-danger">Se déconnecter</a>
+                <?php else: ?>
+                    <a href="connexion.php" class="btn btn-outline-primary me-2">Login</a>
+                    <a href="inscription.php" class="btn btn-primary">Register</a>
+                <?php endif; ?>
             </div>
         </div>
     </nav>
@@ -172,5 +153,3 @@ $isCommercialOrAdmin = isset($_SESSION['user_type']) && in_array($_SESSION['user
         </section>
         <a href="#hSectionTop"><button id="buttonTop" class="fixed-bottom">↑</button></a>
     </header>
-
-

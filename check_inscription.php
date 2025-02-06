@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password_confirm = $_POST['password_confirm'] ?? '';
 
     // Validation des champs obligatoires
-    if (empty($pseudo) ||empty($email) || empty($password) || empty($password_confirm)) {
+    if (empty($pseudo) || empty($email) || empty($password) || empty($password_confirm)) {
         $_SESSION['error_message'] = htmlspecialchars("Veuillez remplir tous les champs obligatoires.");
         header("Location: inscription.php");
         exit();
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id'] = $user_id;
 
             // Succès
-            header("Location: index.php");
+            echo '<meta http-equiv="refresh" content="0;url=index.php">';
             exit();
         }
     }

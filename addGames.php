@@ -242,12 +242,12 @@
 
                 <div>
                     <label for="file" class="form-label">Charger une image :</label>
-                    <input type="file" id="file" name="fileLink" class="form-control">
+                    <input type="file" id="file" name="file" class="form-control">
                     <p class="para" id="paraFile"></p>
                 </div>
 
                 <div>
-                    <input type="submit"  data-bs-target="#exampleModal" value="Enregistrer" class="btn btn-secondary" >
+                    <input type="submit"  id="save" value="Enregistrer" class="btn btn-secondary" >
                     <input type="reset" value="Annuler" class="btn btn-secondary">
                 </div>
 

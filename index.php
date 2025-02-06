@@ -1,5 +1,5 @@
 
-    <?php include './includes/header.php' ?>
+    <?php include 'includes/header.php' ?>
     <main>
         <?php include 'includes/carousel.php';
 

@@ -11,13 +11,14 @@
 
 <body>
 
-    <?php include './includes/header.php'; ?>
+    <?php include 'includes/header.php'; ?>
 
     <?php
 
     // Vérification si l'utilisateur est déjà connecté
     if (isset($_SESSION['u_id'])) {
-        header('Location: index.php'); // Redirection vers la page d'accueil si l'utilisateur est déjà connecté
+        echo '<meta http-equiv="refresh" content="0;url=index.php">';
+        // Redirection vers la page d'accueil si l'utilisateur est déjà connecté
         exit();
     }
 
@@ -92,7 +93,7 @@
         $stmt->execute();
 
 
-        header('Location: index.php'); // Redirection vers la page d'accueil
+        echo '<meta http-equiv="refresh" content="0;url=connexion.php">'; // Redirection vers la page d'accueil
         exit();
     }
     ?>

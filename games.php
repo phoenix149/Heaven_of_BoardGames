@@ -4,7 +4,7 @@
 
     <?php
 
-    
+
     //On vérifie qu'il y a un id dans le lien et qu'il n'est pas vide
     if (isset($_GET['id']) && !empty($_GET['id'])) {
         $id = $_GET['id'];
@@ -57,8 +57,7 @@
             foreach ($theme as $th) {
                 $tm .= $th . " ";
             }
-        }
-        ;
+        };
     } elseif (isset($_GET['search']) && !empty($_GET['search'])) {
         $getName = $_GET['search'];
         // Requête SQL pour récupérer les informations des jeux 
@@ -115,10 +114,9 @@
             foreach ($theme as $th) {
                 $tm .= $th . " ";
             }
-        }
-        ;
+        };
     } else {
-        header('Location: index.php');
+        echo '<meta http-equiv="refresh" content="0;url=index.php">';
     }
 
 
@@ -166,9 +164,9 @@
                     <article id="basket">
                         <p class="card-text" id="stockMessage"><?= htmlentities($stockMessage) ?></p>
                         <p class="card-text" id="price">Prix TTC : <?= $jeu['jeu_prix'] ?>€</p>
-                       <!--Modification des l'affichage des boutons en fontion du status de connection-->
+                        <!--Modification des l'affichage des boutons en fontion du status de connection-->
                         <?php if ($stockMessage !== "Produit en rupture de stock"): ?>
-                            <?php if ($status === 'Client'): ?>
+                            <?php if ($status === 'Non enregistré'|| $status === 'Utilisateurs'): ?>
                                 <button type="submit" class="btn btn-secondary">
                                     <span>Ajouter au panier</span>
                                 </button>
@@ -188,35 +186,35 @@
 
                 </section>
 
-            </div>
-        </article>
-        <div id="descGame">
-            <h5>Description de l'article </h5>
-            <p class="card-text"> <?= htmlentities($jeu['Description']) ?></p>
         </div>
-    <?php endforeach ?>
+    </article>
+    <div id="descGame">
+        <h5>Description de l'article </h5>
+        <p class="card-text"> <?= htmlentities($jeu['Description']) ?></p>
+    </div>
+<?php endforeach ?>
 
 
 
-    <!-- Modal -->
-    <!-- Affichons une modal pour confirmer la suppression -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Suppression</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Êtes-vous sûr de vouloir supprimer ce Jeu ?
-                </div>
-                <div class="modal-footer">
-                    <a href="deleteGame.php?id=<?= urlencode($id) ?>">
-                        <button type="button" id="delete" class="btn btn-primary">Confirmer</button></a>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                </div>
+<!-- Modal -->
+<!-- Affichons une modal pour confirmer la suppression -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Suppression</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Êtes-vous sûr de vouloir supprimer ce Jeu ?
+            </div>
+            <div class="modal-footer">
+                <a href="deleteGame.php?id=<?= urlencode($id) ?>">
+                    <button type="button" id="delete" class="btn btn-primary">Confirmer</button></a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
             </div>
         </div>
     </div>
+</div>
 </main>
 <?php include 'includes/footer.php' ?>

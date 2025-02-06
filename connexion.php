@@ -1,4 +1,4 @@
-<?php include './includes/header.php';?>
+<?php include 'includes/header.php'; ?>
 
 
 <?php
@@ -6,7 +6,7 @@
 
 // Vérification si l'utilisateur est déjà connecté
 if (isset($_SESSION['u_id'])) {
-    header('Location: index.php'); // Redirection vers la page d'accueil si l'utilisateur est déjà connecté
+    echo '<meta http-equiv="refresh" content="0;url=index.php">'; // Redirection vers la page d'accueil si l'utilisateur est déjà connecté
     exit();
 }
 
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $usert = $stmt->fetch(PDO::FETCH_ASSOC);
         $_SESSION['user_type'] = $usert['tu_libelle'];
         $_SESSION['logged_in'] = true;
-        header('Location: index.php'); // Redirection vers la page d'accueil
+        echo '<meta http-equiv="refresh" content="0;url=index.php">'; // Redirection vers la page d'accueil
         exit();
     } else {
         // Identifiants incorrects, affichage d'un message d'erreur
@@ -44,29 +44,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 
-    <main>
+<main>
 
 
-        <?php if (isset($error_message)) : ?>
-            <p><?php echo htmlspecialchars($error_message, ENT_QUOTES, 'UTF-8'); ?></p>
-        <?php endif; ?>
-        <h5>Connectez-vous pour passer commande</h5>
-        <p>Pas de compte ? <a href="inscription.php">S'inscrire</a></p>
-        <form id="mSForms" method="post">
-            <div>
-                <label for="login" class="form-label">Identifiant</label>
-                <input type="text" name="login" required class="form-control">
-            </div>
-            <div>
-                <label for="password">Mot de passe</label>
-                <input type="password" name="password" required class="form-control">
-            </div>
-            <div>
-                <input type="submit" name="connexion" value="Connexion" class="btn btn-secondary">
-            </div>
-            <a href="#">Mot de passe oublié ?</a>
-        </form>
-    </main>
+    <?php if (isset($error_message)) : ?>
+        <p><?php echo htmlspecialchars($error_message, ENT_QUOTES, 'UTF-8'); ?></p>
+    <?php endif; ?>
+    <h5>Connectez-vous pour passer commande</h5>
+    <p>Pas de compte ? <a href="inscription.php">S'inscrire</a></p>
+    <form id="mSForms" method="post">
+        <div>
+            <label for="login" class="form-label">Identifiant</label>
+            <input type="text" name="login" required class="form-control">
+        </div>
+        <div>
+            <label for="password">Mot de passe</label>
+            <input type="password" name="password" required class="form-control">
+        </div>
+        <div>
+            <input type="submit" name="connexion" value="Connexion" class="btn btn-secondary">
+        </div>
+        <a href="#">Mot de passe oublié ?</a>
+    </form>
+</main>
 
 
 <?php include './includes/footer.php'; ?>
