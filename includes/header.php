@@ -123,7 +123,7 @@ $isCommercialOrAdmin = isset($_SESSION['user_type']) && in_array($_SESSION['user
 
                 <h1 id="logoTitre">Heaven of BoardGames</h1>
 
-                <form class="d-flex" role="search" id="hSearch" method="get" action="games.php">
+                <form class="d-flex" role="search" id="hSearch" method="get" action="search.php">
                     <input class="form-control me-2" type="search" id="hChampSearch" placeholder="Rechercher un jeu..." aria-label="Search" name="search">
                     <button class="btn btn-outline-success" id="hSearchButon" type="submit">Rechercher</button>
                 </form>
