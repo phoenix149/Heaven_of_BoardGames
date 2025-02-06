@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajouter un jeu!</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyTXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="./style/style.css">
-
-</head>
-
-<body>
-    <?php include './includes/header.php' ?>
+    <?php include 'includes/header.php' ?>
     <main>
         <?php
 
@@ -35,7 +22,7 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header justify-content-center">
-                        <h1 class="modal-title col-6 p-3 fs-5" id="exampleModalLabel">
+                        <h1 class="modal-title col-6 p-3 justify-content-center fs-5" id="exampleModalLabel">
                             Jeu ajouté avec succès
                         </h1>
                         <!-- <button
@@ -69,7 +56,7 @@
 
         <h4 id="titleForm">Veuillez renseigner les informations concernant le jeu que vous souhaitez ajouter :</h4>
         <section id="">
-            <form id="mSForms" action="./formGame.php" method="post" enctype="multipart/form-data">
+            <form id="mSForms" action="formGame.php" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="ean" class="">EAN :</label>
                     <input type="text" name="ean" class="form-control" id="ean">
@@ -255,18 +242,16 @@
 
                 <div>
                     <label for="file" class="form-label">Charger une image :</label>
-                    <input type="file" id="file" name="file" class="form-control">
+                    <input type="file" id="file" name="fileLink" class="form-control">
                     <p class="para" id="paraFile"></p>
                 </div>
 
                 <div>
-                    <input type="submit" value="Enregistrer" class="btn btn-secondary">
+                    <input type="submit"  data-bs-target="#exampleModal" value="Enregistrer" class="btn btn-secondary" >
                     <input type="reset" value="Annuler" class="btn btn-secondary">
                 </div>
 
             </form>
         </section>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="/script/script.js"></script>
-    <?php include './includes/footer.php' ?>
+    <?php include 'includes/footer.php' ?>

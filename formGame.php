@@ -1,4 +1,4 @@
-<?php include './includes/header.php' ?>
+<?php include 'includes/header.php' ?>
 <?php
 echo "<main>";
 
@@ -228,4 +228,4 @@ if (isset($_POST['ean'])) {
 ?>
 </main>
 
-<?php include './includes/footer.php' ?>
+<?php include 'includes/footer.php' ?>

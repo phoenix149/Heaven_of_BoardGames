@@ -1,4 +1,4 @@
-<?php include './includes/header.php'; ?>
+<?php include 'includes/header.php'; ?>
 <?php include 'includes/carousel.php'; ?>
 <?php
 
@@ -60,4 +60,4 @@ $jeux = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </main>
 
 
-<?php include './includes/footer.php'; ?>
+<?php include 'includes/footer.php'; ?>
