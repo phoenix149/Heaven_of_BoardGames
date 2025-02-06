@@ -1,6 +1,6 @@
 //Récupérons les Ids des éléments HTML du formulaire addGames
 
-let formAdd = document.getElementById("mSForms");
+let formAdd = document.getElementById("addGame");
 let EAN = document.getElementById("ean");
 let gameName = document.getElementById("gameName");
 let noteGame = document.getElementById("noteGame");
@@ -71,12 +71,12 @@ addCountryLabel.style.display = "none";
 addCountryChamp.style.display = "none";
 
 //Ajoutons un événement pour empecher l'envoi du formulaire
-//Déclarons une variable qui permettra d'afficher la modal
-let isValid = true;
 
 saveButton.addEventListener("click", () => {
   // event.preventDefault();
 
+  //Déclarons une variable qui permettra d'afficher la modal
+  let isValid = true;
   //Posons une condition pour vérifier si l'EAN est renseigné
   console.log(EAN.value);
 
@@ -215,11 +215,14 @@ saveButton.addEventListener("click", () => {
   }
 
   //Si toutes les conditions sont vérifiées on affiche la modal
-  if (isValid = true) {
+  if (isValid) {
+    console.log("Envoie");
     formAdd.submit();
+  } else {
+    console.log("Rejet");
+    // formAdd.preventDefault();
   }
 });
-
 
 // Ecouteur d'évenement change sur le select Auteur qui déclenche la fonction afficheChamp
 AddAuthorOption.addEventListener("change", function () {

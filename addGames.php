@@ -56,7 +56,7 @@
 
         <h4 id="titleForm">Veuillez renseigner les informations concernant le jeu que vous souhaitez ajouter :</h4>
         <section id="">
-            <form id="mSForms" action="formGame.php" method="post" enctype="multipart/form-data">
+            <form id="addGame" action="formGame.php" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="ean" class="">EAN :</label>
                     <input type="text" name="ean" class="form-control" id="ean">
