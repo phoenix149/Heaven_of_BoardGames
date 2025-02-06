@@ -424,3 +424,9 @@ border-color: #b89f74;
   height: auto;
   object-fit: contain;
 }
+
+#titleSearch {
+  margin-left: 2%;
+  margin-top: 2%;
+  padding-bottom: 5%;
+}

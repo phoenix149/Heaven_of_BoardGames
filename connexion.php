@@ -44,21 +44,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php if (isset($error_message)) : ?>
         <p><?php echo htmlspecialchars($error_message, ENT_QUOTES, 'UTF-8'); ?></p>
     <?php endif; ?>
-    <p>Veuillez vous connectez pour voir les jeux</p>
+    <h5>Connectez-vous pour passer commande</h5>
     <p>Pas de compte ? <a href="inscription.php">S'inscrire</a></p>
-    <form method="post">
+    <form id="mSForms" method="post">
         <div>
-            <label for="login">Identifiant</label>
-            <input type="text" name="login" required>
+            <label for="login" class="form-label">Identifiant</label>
+            <input type="text" name="login" required class="form-control">
         </div>
         <div>
-            <label for="password">Mot de passe</label>
-            <input type="password" name="password" required>
+            <label class="form-label" for="password">Mot de passe</label>
+            <input type="password" name="password" required class="form-control">
         </div>
         <div>
-            <input type="submit" name="connexion" value="Connexion">
+            <input type="submit" name="connexion" value="Connexion" class="btn btn-secondary">
         </div>
         <a href="#">Mot de passe oublié ?</a>
     </form>
 </main>
-<?php include './includes/footer.php'; ?>
+<?php include './includes/footer.php' ?>

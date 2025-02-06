@@ -34,7 +34,7 @@ CREATE TABLE utilisateurs(
    u_id INT auto_increment,
    u_pseudo VARCHAR(50)  NOT NULL,
    u_email VARCHAR(50)  NOT NULL,
-   u_mdp VARCHAR(50)  NOT NULL,
+   u_mdp VARCHAR(255)  NOT NULL,
    tu_id INT NOT NULL,
    PRIMARY KEY(u_id),
    FOREIGN KEY(tu_id) REFERENCES Type_Utilisateur(tu_id)

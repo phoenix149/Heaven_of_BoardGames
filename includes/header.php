@@ -134,14 +134,14 @@ ob_end_flush();
 
                 <h1 id="logoTitre">Heaven of BoardGames</h1>
 
-                <form class="d-flex" role="search" id="hSearch" method="get" action="games.php">
+                <form class="d-flex" role="search" id="hSearch" method="get" action="search.php">
                     <input class="form-control me-2" type="search" id="hChampSearch" placeholder="Rechercher un jeu..." aria-label="Search" name="search">
                     <button class="btn btn-outline-success" id="hSearchButon" type="submit">Rechercher</button>
                 </form>
             </article>
             <article id="hArticlePanierCompte">
                 <a class="btn btn-outline-success" id="hMoncompteButon" href="connexion.php">Mon Compte</a>
-                <button class="btn btn-outline-success" ><a id="hMonPanierButon" href="basket.php">Mon Panier</a></button>
+                <button class="btn btn-secondary" ><a id="hMonPanierButon" href="basket.php">Mon Panier</a></button>
             </article>
             <aside id="hReseauxTop">
                 <h6 id="titreRS">Nos réseaux</h6>
