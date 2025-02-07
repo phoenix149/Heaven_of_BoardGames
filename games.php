@@ -121,10 +121,10 @@
 
 
     ?>
-    <?php if(!empty($_SESSION['message'])){
-        echo '<div class="alert alert-success" role="alert">'. $_SESSION['message'].'</div>';
+    <?php if (!empty($_SESSION['message'])) {
+        echo '<div class="alert alert-success" role="alert">' . $_SESSION['message'] . '</div>';
         $_SESSION['message'] = "";
-    }?>
+    } ?>
 
     <article id="mArticleLeft">
         <div class="row">
@@ -170,9 +170,15 @@
                         <p class="card-text" id="price">Prix TTC : <?= $jeu['jeu_prix'] ?>€</p>
                         <!--Modification des l'affichage des boutons en fontion du status de connection-->
                         <?php if ($stockMessage !== "Produit en rupture de stock"): ?>
-                            <?php if ($status === 'Non enregistré'|| $status === 'Utilisateurs'): ?>
-                                <button type="submit" class="btn btn-secondary">
-                                    <span>Ajouter au panier</span>
+                            <?php if ($status === 'Non enregistré' || $status === 'Utilisateurs'): ?>
+                                <?php $_SESSION['panier'] = [];
+
+                                echo " <button type='submit' class='btn btn-secondary' onclick='addToCart(\"" . $jeu['Nom'] . "\", \"" . $jeu['jeu_prix'] . "\")'>";
+                                //    $sql = "UPDATE Jeu set jeu_qte_stc = jeu_qte_stc - 1 WHERE jeu_nom = Nom";
+                                //    $jeux = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+                                ?>
+                                <!-- Faire un formulaire avec methode post pour ensuite les récupérer dans le fichier basket.php -->
+                                <span>Ajouter au panier</span>
                                 </button>
                             <?php endif; ?>
                         <?php endif; ?>
@@ -190,6 +196,17 @@
 
                 </section>
 
+                <div id="panier">
+                    <div id="panier-contenu">
+                        <h3>Détails de votre Panier</h3>
+
+                        <ul id="cartList">
+
+                        </ul>
+                        <p>Total : <span id="total">0</span>€</p>
+
+                    </div>
+                </div>
         </div>
     </article>
     <div id="descGame">

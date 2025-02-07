@@ -10,17 +10,36 @@
 </head>
 
 <body>
+
     <?php include 'includes/header.php' ?>
 
     <main>
+    <?php
+    if (isset($_SESSION['panier']) && !empty($_SESSION['panier']) && in_array($_SESSION['panier'], ['Utilisateur'])) {
+        echo "<h3>Détails de votre Panier</h3>";
+        echo '<ul id="cartList">';
+        // foreach ($_SESSION['panier'] as $jeu) {
+            echo "<li>{$jeu['nom']}. Prix : {$jeu['prix']}€.</li>";
+        }
+        echo '</ul>';
 
-    <ul id="cartList">
+        $total = array_sum(array_column($_SESSION['panier'], 'prix'));
+        echo "<p>Total : <span id='total'>0</span>{$total}€</p>";
+    // } else {
+        echo "<p>Le panier est vide.</p>";
+    // }
+    ?>
+        <div id="panier">
+            <div id="panier-contenu">
+                <h3>Détails de votre Panier</h3>
 
-    </ul>
-    <p>Total : <span id="total">0</span>€</p>
+                <ul id="cartList">
+
+                </ul>
+                <p>Total : <span id="total">0</span>€</p>
+
+            </div>
+        </div>
 
     </main>
     <?php include 'includes/footer.php' ?>
-</body>
-
-</html>
