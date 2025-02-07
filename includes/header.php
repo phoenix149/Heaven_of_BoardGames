@@ -23,6 +23,7 @@ if (isset($_SESSION['user_id'])) {
 }
 // Vérifier si l'utilisateur est Commercial ou Admin
 $isCommercialOrAdmin = isset($_SESSION['user_type']) && in_array($_SESSION['user_type'], ['Commercial', 'Admin']);
+$isAdmin = isset($_SESSION['user_type']) && in_array($_SESSION['user_type'], ['Admin']);
 ob_end_flush();
 ?>
 
@@ -66,21 +67,26 @@ ob_end_flush();
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                        <a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
                     </li>
                     <?php if ($isCommercialOrAdmin): ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="addGames.php">Ajouter un produit</a>
+                            <a class="nav-link" href="addGames.php">Ajouter un jeu</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <!-- <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> 
                                 Categories
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="games.php">Toutes les catégories</a></li>
-                                <li><a class="dropdown-item" href="Categorie.php">Ajouter une catégorie</a></li>
+                                 <li><a class="dropdown-item" href="Categorie.php">Ajouter une catégorie</a></li> 
                             </ul>
-                        </li>
+                        </li> -->
+                        <?php if ($isAdmin): ?>
+                        <li class="nav-item">
+                                <a class="nav-link" href="admin.php">Administrer le Site</a>
+                            </li>
+                    <?php endif; ?>
                     <?php endif; ?>
                 </ul>
             </div>
@@ -116,7 +122,13 @@ ob_end_flush();
 
             </article>
             <article id="hArticlePanierCompte">
-                <a class="btn btn-outline-success" id="hMoncompteButon" href="connexion.php">Mon Compte</a>
+            <?php if ($username): ?>
+                    <p class="" id="welcomeText">Bienvenue <?= htmlentities($username) ?>✌</p>
+                    <a href="deconnexion.php" class="btn btn-secondary">Se déconnecter</a>
+                <?php else: ?>
+                    <a href="connexion.php" class="btn btn-secondary">Connexion</a>
+                <?php endif; ?>
+                <!-- <a class="btn btn-outline-success" id="hMoncompteButon" href="connexion.php">Mon Compte</a> -->
                 <a href="basket.php" class="btn btn-outline-success" onclick="showCart()" id="hMonPanierButon">Mon Panier</a>
             </article>
             <aside id="hReseauxTop">
