@@ -1,6 +1,13 @@
     <?php include 'includes/header.php' ?>
     <main>
         <?php
+        
+        // Si l'utilisateur n'est pas un admin ou un commercial il sera redirigé
+        if(!isset($_SESSION['user_type']) || !in_array($_SESSION['user_type'], ['Commercial', 'Admin'])) {
+            $_SESSION['messageAlert'] = "Vous n'avez pas l'autorisation d'accéder à cette page";
+            echo '<meta http-equiv="refresh" content="0;url=index.php">';
+        
+        }
 
         // Récupère les Catégories, Auteurs, Méchanisme, Age, Pays, Langue du jeu
         $categoriesReq = $pdo->query("SELECT ctg_id, ctg_nom from categories")->fetchAll();
@@ -54,9 +61,10 @@
         </div>
 
 
-        <h4 id="titleForm">Veuillez renseigner les informations concernant le jeu que vous souhaitez ajouter :</h4>
         <section id="">
             <form id="addGame" action="formGame.php" method="post" enctype="multipart/form-data">
+                <h1>Veuillez renseigner les informations concernant 
+                    <br>le jeu que vous souhaitez ajouter :</h1>
                 <div class="form-group">
                     <label for="ean" class="">EAN :</label>
                     <input type="text" name="ean" class="form-control" id="ean">
@@ -253,5 +261,7 @@
 
             </form>
         </section>
+    
     </main>
+
     <?php include 'includes/footer.php' ?>

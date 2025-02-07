@@ -16,6 +16,12 @@
 
         <?php
 
+        // Si l'utilisateur n'est pas un admin ou un commercial il sera redirigé
+        if (!isset($_SESSION['user_type']) || !in_array($_SESSION['user_type'], ['Commercial', 'Admin'])) {
+            $_SESSION['messageAlert'] = "Vous n'avez pas l'autorisation d'accéder à cette page";
+            echo '<meta http-equiv="refresh" content="0;url=index.php">';
+        }
+
         //Si la méthode est post mais que l'image n'a pas été remplacé execute cette requête
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_FILES['file'])) {
 
@@ -43,7 +49,8 @@
 
             // J'éxécute ma requête
             $request->execute();
-            echo '<meta http-equiv="refresh" content="0;url=games.php?id='. $id.'">';
+            $_SESSION['message'] = "Votre jeu a bien été modifié";
+            echo '<meta http-equiv="refresh" content="0;url=games.php?id=' . $id . '">';
         }
 
         if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
@@ -198,8 +205,8 @@
 
 
     </main>
-    <?php include './includes/footer.php' ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <?php include 'includes/footer.php' ?>
+
 
 </body>
 

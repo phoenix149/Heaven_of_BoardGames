@@ -4,7 +4,11 @@ include 'includes/header.php';
 <main>
     <?php
 
-
+    // Si l'utilisateur n'est pas un admin ou un commercial il sera redirigé
+    if (!isset($_SESSION['user_type']) || !in_array($_SESSION['user_type'], ['Commercial', 'Admin'])) {
+        $_SESSION['messageAlert'] = "Vous n'avez pas l'autorisation d'accéder à cette page";
+        echo '<meta http-equiv="refresh" content="0;url=index.php">';
+    }
     // Gestion de l'upload de fichier
     if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
         $uploads_dir = 'images/';
@@ -222,6 +226,9 @@ include 'includes/header.php';
         $request2->execute();
 
         $request3->execute();
+
+        $_SESSION['message'] = "Votre jeu " . $gameName . " a bien été créé, merci";
+
 
         echo '<meta http-equiv="refresh" content="0;url=index.php">';
     }

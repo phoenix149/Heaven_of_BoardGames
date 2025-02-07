@@ -92,66 +92,66 @@
         $stmt->bindValue(':user_id', $user_id);
         $stmt->execute();
 
-
+        $_SESSION['message'] = "Votre compte a bien été créé ! Vous pouvez maintenant vous connecter.";
         echo '<meta http-equiv="refresh" content="0;url=connexion.php">'; // Redirection vers la page d'accueil
         exit();
     }
     ?>
 
     <main>
-        <h1>Créer un compte</h1>
-        <p>Veuillez remplir les champs suivants :</p>
-
-        <form method="post">
+        
+        <form method="post" class="msForms">
+            <h1>Créer un compte</h1>
+            <p>Veuillez remplir les champs suivants :</p>
             <div>
-                <label for="nom">Nom</label>
-                <input type="text" name="nom" required>
+                <label for="nom" class="form-label">Nom</label>
+                <input type="text" name="nom" class="form-control" required>
             </div>
             <div>
-                <label for="prenom">Prénom</label>
-                <input type="text" name="prenom" required>
+                <label for="prenom" class="form-label">Prénom</label>
+                <input type="text" name="prenom" class="form-control" required>
             </div>
             <div>
-                <label for="pseudo">Pseudo </label>
-                <input type="text" name="pseudo" required>
+                <label for="pseudo" class="form-label">Pseudo </label>
+                <input type="text" name="pseudo" class="form-control" required>
             </div>
             <div>
-                <label for="complement_adresse">Adresse</label>
-                <input type="text" name="Adresse">
+                <label for="complement_adresse" class="form-label">Adresse</label>
+                <input type="text" name="Adresse" class="form-control">
             </div>
             <div>
-                <label for="code_postal">Code postal</label>
-                <input type="number" name="code_postal" required>
+                <label for="code_postal" class="form-label">Code postal</label>
+                <input type="number" name="code_postal" required class="form-control">
             </div>
             <div>
-                <label for="ville">Ville</label>
-                <input type="text" name="ville" required>
+                <label for="ville" class="form-label">Ville</label>
+                <input type="text" name="ville" required class="form-control">
             </div>
             <div>
-                <label for="telephone">N° de téléphone</label>
-                <input type="tel" name="telephone" required>
+                <label for="telephone" class="form-label">N° de téléphone</label>
+                <input type="tel" name="telephone" required class="form-control">
             </div>
             <div>
-                <label for="email">Mail</label>
-                <input type="email" name="email" required>
+                <label for="email" class="form-label">Mail</label>
+                <input type="email" name="email" required class="form-control">
             </div>
             <div>
-                <label for="password">Créer un mot de passe</label>
-                <input type="password" name="password" required>
+                <label for="password" class="form-label">Créer un mot de passe</label>
+                <input type="password" name="password" required class="form-control">
             </div>
             <div>
-                <label for="password_confirm">Confirmer mot de passe</label>
-                <input type="password" name="password_confirm" required>
+                <label for="password_confirm" class="form-label">Confirmer mot de passe</label>
+                <input type="password" name="password_confirm" required class="form-control">
             </div>
             <div>
-                <input type="submit" value="Confirmer">
-                <input type="reset" value="Annuler">
+                <input type="submit" class="btn btn-secondary" value="Confirmer">
+                <input type="reset" value="Annuler" class="btn btn-secondary">
             </div>
+            <p>Déjà inscrit ? <a href="connexion.php">Se connecter</a></p>
         </form>
-        <p>Déjà inscrit ? <a href="connexion.php">Se connecter</a></p>
     </main>
 
-    <?php include './includes/footer.php'; ?>
+    <?php include 'includes/footer.php'; ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
