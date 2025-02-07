@@ -14,7 +14,7 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_type'] !== 'Admin') {
 ?>
 
 <main>
-    <div class="container mt-4">
+    <div class="container mt-6">
 
     <h2>Gestion des utilisateurs</h2>
 
@@ -26,7 +26,7 @@ if (!isset($_SESSION['user_id']) && $_SESSION['user_type'] !== 'Admin') {
 
     // Récupérer la liste des utilisateurs et leurs informations
     $query = "SELECT 
-                clt_nom, clt_prenom, clt_adress, clt_numero_tel, 
+                clt_nom, clt_prenom, clt_adress, c.clt_cp, c.clt_ville clt_numero_tel, 
                 u.u_id, u.u_pseudo, u.u_email, tu.tu_libelle 
               FROM 
                 utilisateurs u
