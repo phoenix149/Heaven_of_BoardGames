@@ -1,6 +1,16 @@
 
     <?php include 'includes/header.php' ?>
     <main>
+    <?php if(!empty($_SESSION['message'])){
+        echo '<div class="alert alert-success" role="alert">'. $_SESSION['message'].'</div>';
+        $_SESSION['message'] = "";
+    }
+    if(!empty($_SESSION['messageAlert'])){
+        echo '<div class="alert alert-danger" role="alert">'. $_SESSION['messageAlert'].'</div>';
+        $_SESSION['messageAlert'] = "";
+    }
+    ?>
+
         <?php include 'includes/carousel.php';
 
 

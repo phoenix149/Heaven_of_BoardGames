@@ -48,6 +48,12 @@ body {
   color: #fff173;
 }
 
+#welcomeText {
+  margin-top: 0;
+  color:#fff173;
+  font-weight: bold;
+}
+
 footer {
   display: flex;
   justify-content: space-between;
@@ -387,8 +393,9 @@ width: 20%;
   object-fit: contain;
 }
 #addGame, 
-#msForms {
+.msForms {
     /* font-weight: bold; */
+    margin-top: 2%;
     margin-left: 25%;
     margin-right: 25%;
 }

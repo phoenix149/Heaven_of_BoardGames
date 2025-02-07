@@ -121,6 +121,10 @@
 
 
     ?>
+    <?php if(!empty($_SESSION['message'])){
+        echo '<div class="alert alert-success" role="alert">'. $_SESSION['message'].'</div>';
+        $_SESSION['message'] = "";
+    }?>
 
     <article id="mArticleLeft">
         <div class="row">

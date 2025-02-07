@@ -45,14 +45,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 <main>
-
+    <?php
+    if(!empty($_SESSION['message'])){
+        echo '<div class="alert alert-success" role="alert">'. $_SESSION['message'].'</div>';
+        $_SESSION['message'] = "";
+    }
+?>
 
     <?php if (isset($error_message)) : ?>
         <p><?php echo htmlspecialchars($error_message, ENT_QUOTES, 'UTF-8'); ?></p>
     <?php endif; ?>
-    <h5>Connectez-vous pour passer commande</h5>
-    <p>Pas de compte ? <a href="inscription.php">S'inscrire</a></p>
-    <form id="mSForms" method="post">
+    <form id="mSForms" method="post" class="msForms">
+        <h5>Connectez-vous pour passer commande</h5>
+        <p>Pas de compte ? <a href="inscription.php">S'inscrire</a></p>
         <div>
             <label for="login" class="form-label">Identifiant</label>
             <input type="text" name="login" required class="form-control">
@@ -69,4 +74,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </main>
 
 
-<?php include './includes/footer.php'; ?>
+<?php include 'includes/footer.php'; ?>
