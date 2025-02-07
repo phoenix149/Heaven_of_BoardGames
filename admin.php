@@ -5,7 +5,7 @@ ini_set('display_errors', 1);
 include 'includes/header.php';
 
 // Vérifier si l'utilisateur est connecté et est Admin
-if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'Admin') {
+if (!isset($_SESSION['user_id']) && $_SESSION['user_type'] !== 'Admin') {
     echo "<div class='container mt-4'><p class='alert alert-danger'>Accès refusé : Vous devez être Admin pour accéder à cette page.</p></div>";
     include 'includes/footer.php';
     exit();
@@ -13,7 +13,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'Admin') {
 
 ?>
 
-<main class="container mt-4">
+<main>
+    <div class="container mt-4">
 
     <h2>Gestion des utilisateurs</h2>
 
@@ -32,7 +33,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'Admin') {
               JOIN 
                 type_utilisateur tu ON u.tu_id = tu.tu_id
               JOIN 
-                client c ON c.clt_id = clt_id";
+                client c ON u.u_id = c.u_id";
     
     $stmt = $pdo->query($query);
 
@@ -41,6 +42,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'Admin') {
     }
 
     $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
 
     if (empty($users)) {
         echo "<p class='alert alert-warning'>Aucun utilisateur trouvé.</p>";
@@ -75,7 +77,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'Admin') {
         echo '</table>';
     }
     ?>
-
+</div>
 </main>
 
 <?php include 'includes/footer.php'; ?>
