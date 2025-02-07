@@ -109,7 +109,7 @@
 
                 <div>
                     <label for="gamePrice">Prix du Jeu :</label>
-                    <input type="text" name="gamePrice" class="form-control" id="gamePrice">
+                    <input type="text" name="gamePrice" class="form-control" id="gamePrice" placeholder="Exemple : 25.95">
                     <p class="para" id="paraGamePrice"></p>
                 </div>
 
@@ -134,7 +134,24 @@
 
                 <div>
                     <label for="nbPlayer">Nombre de Joueurs :</label>
-                    <input type="text" placeholder="exemple : 2 à 5" name="nbPlayer" class="form-control" id="nbPlayer">
+                    <!-- <input type="text" placeholder="exemple : 2 à 5" name="nbPlayer" class="form-control" id="nbPlayer"> -->
+                     <select name="nbPlayer" id="nbPlayer" class="form-select">
+                     <option value="" hidden></option>
+                     <option value=" " disabled></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="1 à 2">1 à 2</option>
+                        <option value="1 à 3">1 à 3</option>
+                        <option value="1 à 4">1 à 4</option>
+                        <option value="1 à 5">1 à 5</option>
+                        <option value="1 à 6">1 à 6</option>
+                        <option value="2 à 4">2 à 4</option>
+                        <option value="2 à 5">2 à 5</option>
+                        <option value="2 à 6">2 à 6</option>
+                        <option value="3 à 5">3 à 5</option>
+                        <option value="3 à 6">3 à 6</option>
+                        <option value="3 à 10">3 à 10</option>
+                     </select>
                     <p class="para" id="paraPlayer"></p>
                 </div>
 
@@ -179,10 +196,10 @@
                 </div>
 
                 <div>
-                    <label for="country">Pays d'Origine :</label>
+                    <label for="country">Pays de Provenance :</label>
                     <select name="country" id="country" class="form-select">
                         <option value="" hidden></option>
-                        <option value="Add">Ajouter un Pays d'origine</option>
+                        <option value="Add">Ajouter un Pays</option>
                         <option value=" " disabled></option>
                         <?php foreach ($countryReq as $countryU): ?>
                             <option value="<?= $countryU['pays_id'] ?>">

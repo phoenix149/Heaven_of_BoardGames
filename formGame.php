@@ -27,6 +27,7 @@ include 'includes/header.php';
     $modifBDDMechanism = false;
     $modifBDDTheme = false;
     $modifBDDCategory = false;
+    $modifBDDCountry = false;
 
     // Ajouter un Auteur à la base de donnée
 
@@ -131,6 +132,26 @@ include 'includes/header.php';
         $modifBDDEditors = true;
         $idNewEditor = $pdo->lastInsertId();
     }
+    // Ajouter un nouveau pays de provenance à la base de donnée
+    if (isset($_POST['addCountry']) && !empty($_POST['addCountry'])) {
+
+        $addCountry = $_POST['addCountry'];
+
+        // J'écris ma requête SQL
+        $sql = "INSERT INTO `pays` (`pays_nom`) values (:pays_nom)";
+
+        // Je prépare ma requête
+        $request = $pdo->prepare($sql);
+
+        // J'injecte mes valeurs
+        $request->bindValue(":pays_nom", $addCountry, PDO::PARAM_STR);
+
+        // J'éxécute ma requête
+        $request->execute();
+
+        $modifBDDCountry = true;
+        $idNewCountry = $pdo->lastInsertId();
+    }
 
     if (isset($_POST['ean'])) {
         $gamePrice = trim($_POST['gamePrice']); // Je supprime les espaces et je rajoute le symbole euro
@@ -170,6 +191,9 @@ include 'includes/header.php';
         }
         if ($modifBDDCategory == true) {
             $category_ID = $idNewCategory;
+        }
+        if ($modifBDDCountry == true) {
+            $country_ID = $idNewCountry;
         }
 
         // // J'écris ma requête SQL
